@@ -1,0 +1,114 @@
+[
+    {
+        "id": "alabalik",
+        "name": "Alabalık",
+        "description": "Soğuk, temiz ve bol oksijenli akarsularda yaşar. Eti çok lezzetlidir ve protein bakımından zengindir.",
+        "image_path": "assets\\images\\fish_image\\alabalik.png",
+        "qr_path": "assets\\qrcodes\\qr_alabalik.png"
+    },
+    {
+        "id": "benekli_siraz",
+        "name": "Benekli Siraz",
+        "description": "Vücudundaki karakteristik koyu renkli beneklerle tanınır. Genellikle taşlık ve akıntılı bölgeleri tercih eder.",
+        "image_path": "assets\\images\\fish_image\\benekli_siraz.png",
+        "qr_path": "assets\\qrcodes\\qr_benekli_siraz.png"
+    },
+    {
+        "id": "biyikli",
+        "name": "Bıyıklı Balık",
+        "description": "Ağız kenarlarındaki duyarlı bıyıkları sayesinde su tabanındaki yemleri kolayca bulur. Sert akıntılara dayanıklıdır.",
+        "image_path": "assets\\images\\fish_image\\biyikli.png",
+        "qr_path": "assets\\qrcodes\\qr_biyikli.png"
+    },
+    {
+        "id": "bizir",
+        "name": "Bizir",
+        "description": "Fırat ve Dicle nehir sistemlerine özgü bir türdür. Pullu ve ince yapılı bir vücuda sahiptir.",
+        "image_path": "assets\\images\\fish_image\\bizir.png",
+        "qr_path": "assets\\qrcodes\\qr_bizir.png"
+    },
+    {
+        "id": "caner",
+        "name": "Caner Balığı",
+        "description": "Bölgenin en iri türlerinden biridir. Güçlü yapısı nedeniyle sportif balıkçılıkta popülerdir.",
+        "image_path": "assets\\images\\fish_image\\caner.png",
+        "qr_path": "assets\\qrcodes\\qr_caner.png"
+    },
+    {
+        "id": "elazig_sirazi",
+        "name": "Elazığ Sirazı",
+        "description": "Bölgeye endemik bir türdür. Genellikle nehirlerin daha sakin bölümlerinde ve kaya diplerinde yaşar.",
+        "image_path": "assets\\images\\fish_image\\elazig_sirazi.png",
+        "qr_path": "assets\\qrcodes\\qr_elazig_sirazi.png"
+    },
+    {
+        "id": "gumus",
+        "name": "Gümüş Balığı",
+        "description": "Vücudu parlak gümüş rengi pullarla kaplıdır. Genellikle sürüler halinde dolaşan, küçük yapılı bir balıktır.",
+        "image_path": "assets\\images\\fish_image\\gumus.png",
+        "qr_path": "assets\\qrcodes\\qr_gumus.png"
+    },
+    {
+        "id": "kefal",
+        "name": "Kefal",
+        "description": "Hemen her türlü su koşuluna uyum sağlayabilen, çevik ve zeki bir balık türüdür.",
+        "image_path": "assets\\images\\fish_image\\kefal.png",
+        "qr_path": "assets\\qrcodes\\qr_kefal.png"
+    },
+    {
+        "id": "kizilkanat",
+        "name": "Kızılkanat",
+        "description": "Yüzgeçlerindeki kırmızı renk ile ayırt edilir. Bitkisi bol, durgun veya az akıntılı suları sever.",
+        "image_path": "assets\\images\\fish_image\\kizilkanat.png",
+        "qr_path": "assets\\qrcodes\\qr_kizilkanat.png"
+    },
+    {
+        "id": "kupeli",
+        "name": "Küpeli Balık",
+        "description": "Küçük pullu ve uzun vücut yapısına sahiptir. Akarsu tabanındaki organizmalarla beslenir.",
+        "image_path": "assets\\images\\fish_image\\kupeli.png",
+        "qr_path": "assets\\qrcodes\\qr_kupeli.png"
+    },
+    {
+        "id": "sabut",
+        "name": "Sabut",
+        "description": "Fırat havzasının en meşhur balıklarından biridir. Beyaz eti ve az kılçıklı olmasıyla bilinir.",
+        "image_path": "assets\\images\\fish_image\\sabut.png",
+        "qr_path": "assets\\qrcodes\\qr_sabut.png"
+    },
+    {
+        "id": "sazan",
+        "name": "Sazan",
+        "description": "Dayanıklılığı ile bilinir. Tatlı suların en yaygın balığıdır, çok uzun yıllar yaşayabilir.",
+        "image_path": "assets\\images\\fish_image\\sazan.png",
+        "qr_path": "assets\\qrcodes\\qr_sazan.png"
+    },
+    {
+        "id": "sazan_aynali",
+        "name": "Aynalı Sazan",
+        "description": "Vücudunda az sayıda ama çok iri parlak pullar bulunur. Islah edilmiş bir sazan türüdür, hızlı büyür.",
+        "image_path": "assets\\images\\fish_image\\sazan_aynali.png",
+        "qr_path": "assets\\qrcodes\\qr_sazan_aynali.png"
+    },
+    {
+        "id": "tas_isiran",
+        "name": "Taş Isıran",
+        "description": "Dipte yaşayan, çok küçük yapılı bir balıktır. Kum ve taşları ağzına alıp besinleri süzdüğü için bu adı almıştır.",
+        "image_path": "assets\\images\\fish_image\\tas_isiran.png",
+        "qr_path": "assets\\qrcodes\\qr_tas_isiran.png"
+    },
+    {
+        "id": "yayin",
+        "name": "Yayın Balığı",
+        "description": "Tatlı suların devidir. Pulsuz, kaygan derisi ve uzun bıyıklarıyla tanınan bir avcıdır.",
+        "image_path": "assets\\images\\fish_image\\yayin.png",
+        "qr_path": "assets\\qrcodes\\qr_yayin.png"
+    },
+    {
+        "id": "yilan",
+        "name": "Yılan Balığı",
+        "description": "Yılana benzeyen uzun vücut yapısına sahiptir. Üremek için okyanusları aşan ilginç bir yaşam döngüsü vardır.",
+        "image_path": "assets\\images\\fish_image\\yilan.png",
+        "qr_path": "assets\\qrcodes\\qr_yilan.png"
+    }
+]

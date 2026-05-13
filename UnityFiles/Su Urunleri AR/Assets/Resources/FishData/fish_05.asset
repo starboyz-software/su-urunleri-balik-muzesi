@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c5e012f6e464cbca630615cc9d2873, type: 3}
+  m_Name: fish_05
+  m_EditorClassIdentifier: Assembly-CSharp::ARAquarium.Data.FishData
+  fishID: fish_05
+  fishName: "Kum Mercan\u0131"
+  scientificName: Pagellus acarne
+  habitat: Akdeniz, Ege, Marmara
+  fishDescription: "Kum Mercan\u0131, kumlu ve \xE7amurlu deniz tabanlar\u0131nda
+    ya\u015Far. Pembe-k\u0131rm\u0131z\u0131 rengiyle \xE7ok g\xFCzel bir bal\u0131kt\u0131r.
+    K\xFC\xE7\xFCk kabuklular ve solucanlarla beslenir."
+  arPrefab: {fileID: 1758987291006430255, guid: ee74e7121e5ff46dca04bffa61eee080, type: 3}
+  modelScale: 0.02
+  thumbnail: {fileID: 0}
+  themeColor: {r: 0.8, g: 0.3, b: 0.6, a: 1}

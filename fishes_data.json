@@ -1,0 +1,114 @@
+[
+    {
+        "id": "fish_alabalik",
+        "name": "Alabalik",
+        "image_path": "assets\\images\\fish_image\\alabalik.png",
+        "qr_path": "assets\\qrcodes\\qr_alabalik.png",
+        "qr_content": "fish_alabalik"
+    },
+    {
+        "id": "fish_benekli_siraz",
+        "name": "Benekli Siraz",
+        "image_path": "assets\\images\\fish_image\\benekli_siraz.png",
+        "qr_path": "assets\\qrcodes\\qr_benekli_siraz.png",
+        "qr_content": "fish_benekli_siraz"
+    },
+    {
+        "id": "fish_biyikli",
+        "name": "Biyikli",
+        "image_path": "assets\\images\\fish_image\\biyikli.png",
+        "qr_path": "assets\\qrcodes\\qr_biyikli.png",
+        "qr_content": "fish_biyikli"
+    },
+    {
+        "id": "fish_bizir",
+        "name": "Bizir",
+        "image_path": "assets\\images\\fish_image\\bizir.png",
+        "qr_path": "assets\\qrcodes\\qr_bizir.png",
+        "qr_content": "fish_bizir"
+    },
+    {
+        "id": "fish_caner",
+        "name": "Caner",
+        "image_path": "assets\\images\\fish_image\\caner.png",
+        "qr_path": "assets\\qrcodes\\qr_caner.png",
+        "qr_content": "fish_caner"
+    },
+    {
+        "id": "fish_elazig_sirazi",
+        "name": "Elazig Sirazi",
+        "image_path": "assets\\images\\fish_image\\elazig_sirazi.png",
+        "qr_path": "assets\\qrcodes\\qr_elazig_sirazi.png",
+        "qr_content": "fish_elazig_sirazi"
+    },
+    {
+        "id": "fish_gumus",
+        "name": "Gumus",
+        "image_path": "assets\\images\\fish_image\\gumus.png",
+        "qr_path": "assets\\qrcodes\\qr_gumus.png",
+        "qr_content": "fish_gumus"
+    },
+    {
+        "id": "fish_kefal",
+        "name": "Kefal",
+        "image_path": "assets\\images\\fish_image\\kefal.png",
+        "qr_path": "assets\\qrcodes\\qr_kefal.png",
+        "qr_content": "fish_kefal"
+    },
+    {
+        "id": "fish_kizilkanat",
+        "name": "Kizilkanat",
+        "image_path": "assets\\images\\fish_image\\kizilkanat.png",
+        "qr_path": "assets\\qrcodes\\qr_kizilkanat.png",
+        "qr_content": "fish_kizilkanat"
+    },
+    {
+        "id": "fish_kupeli",
+        "name": "Kupeli",
+        "image_path": "assets\\images\\fish_image\\kupeli.png",
+        "qr_path": "assets\\qrcodes\\qr_kupeli.png",
+        "qr_content": "fish_kupeli"
+    },
+    {
+        "id": "fish_sabut",
+        "name": "Sabut",
+        "image_path": "assets\\images\\fish_image\\sabut.png",
+        "qr_path": "assets\\qrcodes\\qr_sabut.png",
+        "qr_content": "fish_sabut"
+    },
+    {
+        "id": "fish_sazan",
+        "name": "Sazan",
+        "image_path": "assets\\images\\fish_image\\sazan.png",
+        "qr_path": "assets\\qrcodes\\qr_sazan.png",
+        "qr_content": "fish_sazan"
+    },
+    {
+        "id": "fish_sazan_aynali",
+        "name": "Sazan Aynali",
+        "image_path": "assets\\images\\fish_image\\sazan_aynali.png",
+        "qr_path": "assets\\qrcodes\\qr_sazan_aynali.png",
+        "qr_content": "fish_sazan_aynali"
+    },
+    {
+        "id": "fish_tas_isiran",
+        "name": "Tas Isiran",
+        "image_path": "assets\\images\\fish_image\\tas_isiran.png",
+        "qr_path": "assets\\qrcodes\\qr_tas_isiran.png",
+        "qr_content": "fish_tas_isiran"
+    },
+    {
+        "id": "fish_yayin",
+        "name": "Yayin",
+        "image_path": "assets\\images\\fish_image\\yayin.png",
+        "qr_path": "assets\\qrcodes\\qr_yayin.png",
+        "qr_content": "fish_yayin"
+    },
+    {
+        "id": "fish_yilan",
+        "name": "Yilan",
+        "image_path": "assets\\images\\fish_image\\yilan.png",
+        "qr_path": "assets\\qrcodes\\qr_yilan.png",
+        "qr_content": "fish_yilan"
+    }
+]

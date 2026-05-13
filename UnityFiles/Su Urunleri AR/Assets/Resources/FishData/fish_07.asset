@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c5e012f6e464cbca630615cc9d2873, type: 3}
+  m_Name: fish_07
+  m_EditorClassIdentifier: Assembly-CSharp::ARAquarium.Data.FishData
+  fishID: fish_07
+  fishName: "Yaz\u0131l\u0131 Hani"
+  scientificName: Serranus scriba
+  habitat: Akdeniz, Ege
+  fishDescription: "Yaz\u0131l\u0131 Hani, v\xFCcudundaki ilgin\xE7 \xE7izgi ve desenlerle
+    ad\u0131n\u0131 alm\u0131\u015Ft\u0131r. Kayal\u0131k b\xF6lgelerde saklanmay\u0131
+    sever. K\xFC\xE7\xFCk ama \xE7ok cesur bir bal\u0131kt\u0131r!"
+  arPrefab: {fileID: 2784407906104307594, guid: b9633307625f2494080e79a55aca51b3, type: 3}
+  modelScale: 0.02
+  thumbnail: {fileID: 0}
+  themeColor: {r: 0.85, g: 0.25, b: 0.3, a: 1}

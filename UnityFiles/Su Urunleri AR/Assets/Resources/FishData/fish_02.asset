@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c5e012f6e464cbca630615cc9d2873, type: 3}
+  m_Name: fish_02
+  m_EditorClassIdentifier: Assembly-CSharp::ARAquarium.Data.FishData
+  fishID: fish_02
+  fishName: "\xC7ipura"
+  scientificName: Sparus aurata
+  habitat: Akdeniz, Ege
+  fishDescription: "\xC7ipura, alt\u0131n sar\u0131s\u0131 bir \xE7izgiyle tan\u0131nan
+    zarif bir bal\u0131kt\u0131r. Deniz \xE7iftliklerinde de yeti\u015Ftirilir. Lezzetli
+    beyaz etiyle sofrlar\u0131n vazge\xE7ilmezidir!"
+  arPrefab: {fileID: 3883538340547171064, guid: 7f040a0de6e4540b19914f6590044d1e, type: 3}
+  modelScale: 0.02
+  thumbnail: {fileID: 0}
+  themeColor: {r: 0.9, g: 0.7, b: 0.15, a: 1}

@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Elazığ Balık Müzesi",
+    "slug": "su_urunleri",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#020617"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rusenali99.su-urunleri"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#020617"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.rusenali99.su_urunleri"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-web-browser",
+      "./plugins/withUnity"
+    ]
+  }
+}

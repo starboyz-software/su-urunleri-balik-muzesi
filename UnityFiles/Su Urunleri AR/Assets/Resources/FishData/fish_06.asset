@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c5e012f6e464cbca630615cc9d2873, type: 3}
+  m_Name: fish_06
+  m_EditorClassIdentifier: Assembly-CSharp::ARAquarium.Data.FishData
+  fishID: fish_06
+  fishName: Levrek
+  scientificName: Dicentrarchus labrax
+  habitat: Akdeniz, Ege, Karadeniz
+  fishDescription: "Levrek, zarif ve g\xFC\xE7l\xFC bir avc\u0131 bal\u0131kt\u0131r.
+    G\xFCm\xFC\u015Fi parlak v\xFCcudu ile denizlerin \u015F\xF6valyesidir! Hem a\xE7\u0131k
+    denizde hem k\u0131y\u0131larda ya\u015Far."
+  arPrefab: {fileID: 7454020828178494082, guid: af0d1fe989df74c18a9d73e045b299a6, type: 3}
+  modelScale: 0.02
+  thumbnail: {fileID: 0}
+  themeColor: {r: 0.55, g: 0.4, b: 0.9, a: 1}

@@ -1,0 +1,62 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# generated native folders
+/ios
+/android
+
+# Unity builds
+/unity
+
+# Unity temporary folders
+/UnityFiles/Su Urunleri AR/[Ll]ibrary/
+/UnityFiles/Su Urunleri AR/[Tt]emp/
+/UnityFiles/Su Urunleri AR/[Oo]bj/
+/UnityFiles/Su Urunleri AR/[Bb]uild/
+/UnityFiles/Su Urunleri AR/[Ll]ogs/
+/UnityFiles/Su Urunleri AR/[Uu]ser[Ss]ettings/
+/UnityFiles/Su Urunleri AR/Su Urunleri AR_BurstDebugInformation_DoNotShip/
+
+# Unity generated files
+/UnityFiles/Su Urunleri AR/*.csproj
+/UnityFiles/Su Urunleri AR/*.sln
+/UnityFiles/Su Urunleri AR/*.unitypackage
+/UnityFiles/Su Urunleri AR/mono_crash.*.json
+/UnityFiles/Su Urunleri AR/ios/
+/UnityFiles/Su Urunleri AR/android/
+/UnityFiles/Su Urunleri AR/build.app/

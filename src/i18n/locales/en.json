@@ -1,0 +1,296 @@
+{
+  "common": {
+    "welcome": "Welcome,",
+    "museum_name": "Elazığ Fish Museum",
+    "search_placeholder": "Search fish species or section...",
+    "see_all": "See All",
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "detail_title": "Fish Detail",
+    "listen": "Listen",
+    "stop": "Stop",
+    "avg_length": "Avg. Length",
+    "avg_weight": "Avg. Weight",
+    "habitat": "Habitat",
+    "about_fish": "About Fish",
+    "habitat_title": "Habitat",
+    "mark_as_visited": "Mark as Visited",
+    "freshwater": "Freshwater",
+    "no_info": "Detailed information about this fish will be added soon.",
+    "museum_title": "About Museum",
+    "quiz_title": "Fish Trivia Quiz",
+    "endemic": "Endemic",
+    "protected": "Protected",
+    "no_fish_found": "No fish found in this category."
+  },
+  "map": {
+    "title": "Interactive Map of Elazığ",
+    "subtitle": "Real-time Habitat Analysis",
+    "legend_density": "Density",
+    "legend_freshwater": "Freshwater",
+    "area_1": "Euphrates Depths",
+    "area_2": "Keban Dam Lake",
+    "area_3": "Keban/Circir",
+    "area_4": "Lake Hazar",
+    "area_5": "Karakaya Basin",
+    "area_6": "Murat/Euphrates Junction",
+    "area_7": "Southern Currents",
+    "area_8": "Agin Region",
+    "dist_keban": "KEBAN",
+    "dist_sivrice": "SIVRICE (HAZAR)",
+    "dist_agin": "AGIN",
+    "dist_elazig": "ELAZIG"
+  },
+  "guestbook": {
+    "title": "Guestbook",
+    "subtitle": "Share Your Memories With Us",
+    "form_title": "Leave a Note",
+    "name_placeholder": "Your Name (Optional)",
+    "message_placeholder": "Your thoughts about the museum...",
+    "rating_label": "Your Rating:",
+    "submit_button": "Send",
+    "section_title": "Recent Posts",
+    "sort_highest": "Best",
+    "sort_newest": "Newest",
+    "empty_state": "No notes left yet. Be the first to write!",
+    "anonymous": "Anonymous Visitor"
+  },
+  "quiz": {
+    "question_prefix": "Question",
+    "question_image": "Which fish is this?",
+    "question_species": "Which fish has the scientific name {{species}}?",
+    "result_title": "Congratulations!",
+    "result_score": "Your Score: {{score}}",
+    "result_excellent": "You are a true Euphrates expert!",
+    "result_good": "Good progress, keep studying.",
+    "result_bad": "You should visit the museum more often!",
+    "retry": "Try Again",
+    "back_home": "Back to Home"
+  },
+  "about": {
+    "tag": "TAGEM Approved Collection",
+    "institution": "Fisheries Research Institute",
+    "corporate_memory": "Corporate Memory",
+    "description": "The Fisheries Research Institute Museum of Elazığ, operating under TAGEM, exhibits more than 120 fish species at scientific standards. It is one of Turkey's most important thematic museums, bringing together the biodiversity of the Euphrates and Tigris basins under one roof.",
+    "address_label": "Address",
+    "address_value": "Sürsürü Mah. Şehit Polis M.L. Yılmaz Sk. No:1, Elazığ",
+    "visit_hours_label": "Visiting Hours",
+    "visit_hours_value": "Weekdays: 08:30 - 17:30",
+    "contact_label": "Contact",
+    "website_label": "Website",
+    "collection_title": "Museum Collection",
+    "collection_text": "In our collection, there is a wide range of species from the Euphrates Pike to endangered species. Specimens are kept in jars and special showcases using scientific preservation methods and are offered to researchers and visitors."
+  },
+  "categories": {
+    "euphrates": "Euphrates Species",
+    "dam": "Dam Inhabitants",
+    "predatory": "Predatory Fish",
+    "endemic": "Endemic Species"
+  },
+  "home": {
+    "daily_fish": "Fish of the Day",
+    "daily_fish_desc": "Discover everything about",
+    "stats_total": "Total Species",
+    "stats_discovered": "Discovered",
+    "stats_points": "Your Score",
+    "features_quiz": "Quiz",
+    "features_quiz_desc": "Test Your Knowledge",
+    "features_map": "Map",
+    "features_map_desc": "Habitats",
+    "features_guestbook": "Guestbook",
+    "features_guestbook_desc": "Share Your Memories",
+    "featured_section": "Featured",
+    "did_you_know": "Did You Know?",
+    "announcement_title": "Mystery of Euphrates",
+    "announcement_subtitle": "Discover all endemic species unique to our region in one list."
+  },
+  "cat_euphrates": {
+    "title": "Euphrates Species",
+    "hero_title": "Endemic Basin Species",
+    "hero_subtitle": "Discover the rarest species unique to the Euphrates River, the lifeblood of Mesopotamia."
+  },
+  "cat_dam": {
+    "title": "Dam Lake Species",
+    "hero_title": "Lake Ecosystem",
+    "hero_subtitle": "Explore the diverse fish species living in the unique ecosystem of Keban and Karakaya dam lakes."
+  },
+  "cat_predatory": {
+    "title": "Predatory Species",
+    "hero_title": "Masters of the Depths",
+    "hero_subtitle": "Get to know the powerful and fast predatory fish that maintain the balance in our waters."
+  },
+  "cat_endemic": {
+    "title": "Endemic Species",
+    "hero_title": "Unique Heritage",
+    "hero_subtitle": "Specially protected endemic species found only in our region's waters."
+  },
+  "favorites": {
+    "title": "My Favorites",
+    "empty": "You don't have any favorite fish yet.",
+    "explore_button": "Explore Species"
+  },
+  "dyk": {
+    "1": { "title": "Gigantic Dimensions", "text": "Euphrates Pike (Caner) can reach up to 2 meters in length and 100 kg in weight." },
+    "2": { "title": "Living Fossil", "text": "Mesopotamian Catfish is one of the rare species that has not changed its form for millions of years." },
+    "3": { "title": "Keban Classics", "text": "Keban Dam Lake is one of the largest freshwater fishing centers in Turkey." },
+    "4": { "title": "Eyelids", "text": "Most fish do not have eyelids, so their eyes are always open and they cannot close them even when sleeping." },
+    "5": { "title": "Depth Record", "text": "Lake Hazar is the deepest point of Elazığ and is a tectonic lake with a depth exceeding 200 meters." },
+    "6": { "title": "Eel Journey", "text": "Eels in the Euphrates travel 6,000 km to the Sargasso Sea to breed." },
+    "7": { "title": "Power of Keban", "text": "When Keban Dam opened in 1974, it was the largest in Turkey and one of the few in the world." },
+    "8": { "title": "Fish Age", "text": "You can find out the age of fish by counting the growth rings on their scales (just like trees)." },
+    "9": { "title": "Secret of Hazar", "text": "There are ruins of an 11th-century 'Sunken City' under Lake Hazar." },
+    "10": { "title": "Smart Chubs", "text": "Freshwater chubs are very smart; they move away even when they see the shadow of the fisherman." }
+  },
+  "fish": {
+    "1": {
+      "name": "Euphrates Pike (Caner)",
+      "tag": "King",
+      "description": "The most magnificent and massive predator of the Euphrates and Tigris rivers. Known locally as 'Caner', this species is also called the 'Tiger of the Water' in Mesopotamian history. It is completely carnivorous, feeding on other fish, water birds, and even small mammals. Reaching over 2 meters in length and over 100 kilograms in weight, it is one of the largest freshwater fish."
+    },
+    "2": {
+      "name": "Elazığ Barb",
+      "tag": "Native",
+      "description": "An endemic species unique to our region, also known as 'Umbla' in the scientific world. It prefers to live in the cool, clear, and high-oxygen waters of the Euphrates basin. Its mouth structure is evolved for scraping algae off underwater rocks."
+    },
+    "3": {
+      "name": "Shabut",
+      "tag": "Euphrates Pearl",
+      "description": "A scaled and delicious species unique to the Euphrates and Tigris rivers. Known for its strong swimming ability against river currents. It holds a very important place in regional cuisine."
+    },
+    "4": {
+      "name": "Mesopotamian Catfish",
+      "tag": "Night Hunter",
+      "description": "A scale-less and whiskered bottom fish that has maintained its form for millions of years. This night-hunting predator can feed on all kinds of creatures on the riverbed."
+    },
+    "5": {
+      "name": "Rainbow Trout",
+      "tag": "Cold Water Resident",
+      "description": "A species with high economic value, especially intensively farmed in Keban and Çırçır regions. It gets its name from the pink stripe on its side."
+    },
+    "6": {
+      "name": "Spotted Barb",
+      "tag": "Stream Master",
+      "description": "Known for its characteristic spots on its body, this barb species loves fast-flowing waters. With its agile structure, it moves easily against the current."
+    },
+    "7": {
+      "name": "Bearded Fish",
+      "tag": "Bottom Specialist",
+      "description": "A strong-bodied fish that easily finds food on the riverbed thanks to the whiskers around its mouth. It prefers rocky and gravelly floors."
+    },
+    "8": {
+      "name": "Bizir",
+      "tag": "Rare Species",
+      "description": "One of the special species of the Euphrates basin. It differs from other cyprinids with its long and thin body structure. It is of great importance for scientific research."
+    },
+    "9": {
+      "name": "Silver Fish",
+      "tag": "Small and Bright",
+      "description": "A small fish that lives in schools in dam lakes and shines with its silver color. It is an important food source for other predatory fish in the ecosystem."
+    },
+    "10": {
+      "name": "Freshwater Chub",
+      "tag": "Smart Hunter",
+      "description": "A fish known for its sharp eyes and intelligence, making it difficult to catch. It is a resilient species that can consume both plant and animal foods."
+    },
+    "11": {
+      "name": "Rudd",
+      "tag": "Red Wing",
+      "description": "Recognized by the bright red color on its fins, it is an aesthetic species that loves stagnant and plant-rich waters. Frequently found in dam lakes."
+    },
+    "12": {
+      "name": "Earring Fish",
+      "tag": "Silvery",
+      "description": "A fish that resembles silver with its body structure and scales, living in the middle sections of rivers. It travels in schools."
+    },
+    "13": {
+      "name": "Common Carp",
+      "tag": "Basin Classic",
+      "description": "The most resilient and widespread fish of fresh waters. It likes to feed on muddy floors and can live for many years."
+    },
+    "14": {
+      "name": "Spined Loach",
+      "tag": "Small Protector",
+      "description": "A small endemic species living at the bottom, with a body form resembling an eel. It feeds on small creatures among the rocks."
+    },
+    "15": {
+      "name": "Eel",
+      "tag": "Traveler",
+      "description": "A mysterious and oily fish species living in our rivers, traveling thousands of kilometers to the Sargasso Sea to spawn."
+    },
+    "16": {
+      "name": "Mirror Carp",
+      "tag": "Keban Pearl",
+      "description": "One of the most characteristic residents of Keban and Karakaya Dam Lakes. It is easily distinguished from other carp species by the small number of very large and shiny scales on its body. Mirror Carp, which has an omnivorous diet, consumes underwater plant roots, insect larvae, and small crustaceans."
+    },
+    "lufer": { "name": "Bluefish", "tag": "Marine", "description": "One of the most noble and fast predators of the sea. Known for its sharp teeth and agility." },
+    "cipura": { "name": "Gilt-head Bream", "tag": "Aegean/Med", "description": "Recognized by its silvery scales and the golden spot on its cheeks, it is a very delicious marine fish." },
+    "gun-baligi": { "name": "Ornate Wrasse", "tag": "Colorful", "description": "A species that decorates coral reefs and rocky areas with its colorful body structure." },
+    "kum-mercani": { "name": "Sand Steenbras", "tag": "Deep Water", "description": "An elegant fish in pink-red tones that loves warm waters and sandy bottoms." },
+    "levrek": { "name": "European Bass", "tag": "King", "description": "Known as the king of the sea. It is a predatory species that likes to live in shallow waters near the coast." },
+    "yazili-hani": { "name": "Painted Comber", "tag": "Characteristic", "description": "A bottom fish distinguished by its writing-like patterns on its body and characteristic colors." },
+    "istavrit": { "name": "Horse Mackerel", "tag": "School", "description": "A very active marine fish with silvery colors that travels in schools." },
+    "kupes": { "name": "Bogue", "tag": "Fine Scaled", "description": "Known for its fine scales and large eyes, it is a very common species seen on our coasts." }
+  },
+  "settings": {
+    "title": "Settings",
+    "general": "General",
+    "notifications": "Notifications",
+    "dark_mode": "Dark Mode",
+    "language": "Language",
+    "security_data": "Security & Data",
+    "location_permissions": "Location Permissions",
+    "clear_cache": "Clear Cache",
+    "app": "Application",
+    "help_center": "Help Center",
+    "version": "Version",
+    "delete_account": "Delete Account",
+    "select_language": "Select Language",
+    "cancel": "Cancel",
+    "clear_cache_title": "Clear Cache",
+    "clear_cache_msg": "Are you sure you want to clear the application cache?",
+    "clear_cache_success": "Cache cleared successfully.",
+    "help_title": "Help",
+    "help_msg": "Redirecting to support team..."
+  },
+  "profile": {
+    "visitor": "Visitor",
+    "stats_seen": "Fish Seen",
+    "stats_collection": "Collection",
+    "stats_points": "Points",
+    "badges_title": "Earned Badges",
+    "badge_explorer": "Euphrates Explorer",
+    "badge_hunter": "Silver Hunter",
+    "badge_scanner": "Quick Scanner",
+    "account_settings": "Account and Settings",
+    "visit_history": "Visit History",
+    "visit_history_desc": "Fish you scanned before",
+    "my_favorites": "My Favorites",
+    "my_favorites_desc": "Fish species you saved",
+    "app_settings": "App Settings",
+    "support": "Support",
+    "about_museum": "About Museum",
+    "logout": "Log Out"
+  },
+  "history": {
+    "title": "Visit History",
+    "empty_state": "You haven't scanned any fish yet."
+  },
+  "scan": {
+    "title": "QR Scanner",
+    "hint": "Align QR code within the frame",
+    "torch_on": "Flashlight On",
+    "torch_off": "Flashlight Off",
+    "permission_title": "Camera permission is required.",
+    "permission_button": "Grant Permission",
+    "success_title": "Great! You discovered a new fish!",
+    "success_msg": "{{name}} has been added to your history.",
+    "go_to_history": "Go to History",
+    "ok": "OK"
+  },
+  "ar": {
+    "zoom": "ZOOM",
+    "rotate": "ROTATE"
+  }
+}
