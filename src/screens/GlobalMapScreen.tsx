@@ -45,14 +45,15 @@ export default function GlobalMapScreen({ navigation }: any) {
   }, [pulseAnim]);
 
   const FISH_LOCATIONS = useMemo(() => [
-    { id: 'alabalik', x: width * 0.48, y: height * 0.46, areaKey: 'map.area_1' },
-    { id: 'sazan', x: width * 0.42, y: height * 0.35, areaKey: 'map.area_2' },
-    { id: 'caner', x: width * 0.32, y: height * 0.26, areaKey: 'map.area_3' },
-    { id: 'elazig_sirazi', x: width * 0.72, y: height * 0.63, areaKey: 'map.area_4' },
-    { id: 'sabut', x: width * 0.52, y: height * 0.58, areaKey: 'map.area_5' },
-    { id: 'bizir', x: width * 0.53, y: height * 0.50, areaKey: 'map.area_6' },
-    { id: 'yayin', x: width * 0.45, y: height * 0.70, areaKey: 'map.area_7' },
+    { id: 'lufer', x: width * 0.32, y: height * 0.26, areaKey: 'map.area_3' },
+    { id: 'cipura', x: width * 0.42, y: height * 0.35, areaKey: 'map.area_2' },
     { id: 'kefal', x: width * 0.22, y: height * 0.38, areaKey: 'map.area_8' },
+    { id: 'gun_baligi', x: width * 0.72, y: height * 0.63, areaKey: 'map.area_4' },
+    { id: 'kum_mercani', x: width * 0.52, y: height * 0.58, areaKey: 'map.area_5' },
+    { id: 'levrek', x: width * 0.53, y: height * 0.50, areaKey: 'map.area_6' },
+    { id: 'yazili_hani', x: width * 0.45, y: height * 0.70, areaKey: 'map.area_7' },
+    { id: 'sarikuyruk_istavrit', x: width * 0.58, y: height * 0.38, areaKey: 'map.area_6' },
+    { id: 'kupes', x: width * 0.65, y: height * 0.48, areaKey: 'map.area_1' },
   ], []);
 
   const handleFishPress = (id: string) => {

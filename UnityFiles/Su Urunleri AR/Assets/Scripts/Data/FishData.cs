@@ -25,7 +25,7 @@ namespace ARAquarium.Data
         public GameObject arPrefab;
         
         [Tooltip("Scale multiplier for the AR model")]
-        public float modelScale = 0.02f;
+        public float modelScale = 0.15f;
         
         [Tooltip("Thumbnail sprite for UI display")]
         public Sprite thumbnail;

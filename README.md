@@ -4,6 +4,14 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-Private-red?style=flat-square)](LICENSE)
 
+> ### 📦 Proje Derleme & Tanıtım Bağlantıları (Google Drive)
+> Uygulamanın fiziksel testleri için derlenmiş paketlere ve uygulama tanıtım videosuna aşağıdaki linklerden doğrudan ulaşabilirsiniz:
+> *   🤖 **Android Kurulum Paketi (APK - Release):** https://drive.google.com/drive/folders/1szXR4_zITPMLJwn4pOo9hRobD_kT-vJZ?usp=sharing
+> *   🍏 **iOS Kurulum Paketi (IPA - Release):** https://drive.google.com/drive/folders/1szXR4_zITPMLJwn4pOo9hRobD_kT-vJZ?usp=sharing
+> *   🎥 **Uygulama Tanıtım / Demo Videosu:** https://drive.google.com/drive/folders/1szXR4_zITPMLJwn4pOo9hRobD_kT-vJZ?usp=sharing
+
+---
+
 Elazığ Su Ürünleri Araştırma Enstitüsü bünyesinde bulunan **Balık Müzesi** için tasarlanmış premium dijital rehber uygulamasıdır. Bu uygulama, Fırat Havzası ve bölgesel baraj göllerindeki biyoçeşitliliği dijital dünyaya taşıyarak ziyaretçilere interaktif bir deneyim sunar.
 
 ---
@@ -20,10 +28,10 @@ Elazığ bölgesinin su kaynaklarını (Keban, Sivrice, Ağın) kapsayan özel t
 Müzede yer alan her tür için özel QR kodlar üzerinden anında erişim. `AI Camera` simülasyonu ile balık türlerinin görsel üzerinden tanınması.
 
 ### 3. Kapsamlı Tür Veritabanı
-*   **Fırat Havzası Türleri:** Şabut, Bıyıklı Balık, Bizir ve daha fazlası.
-*   **Baraj Gölü Türleri:** Alabalık, Gümüş ve Sazan türleri.
-*   **Yırtıcı Türler:** Dev Fırat Turnası (Caner) ve Mezopotamya Yayın Balığı.
-*   **Endemik Türler:** Bölgeye özgü *Cobitis elazigensis* (Taş Isıran) gibi nadir türler.
+*   **Fırat Havzası Türleri:** Benekli Siraz, Bıyıklı Balık, Bizir, Kefal, Kızılkanat.
+*   **Baraj Gölü Türleri:** Gümüş Balığı.
+*   **Yırtıcı Türler:** Dev Fırat Turnası (Caner Balığı).
+*   **Endemik Türler:** Bölgeye özgü Elazığ Sirazı.
 
 ### 4. Eğitici ve Sosyal Katılım
 *   **Quiz Modülü:** Ziyaretçilerin bilgilerini test edebileceği 5 soruluk dinamik sınav sistemi.
@@ -94,6 +102,20 @@ src/
 ├── services/           # Veri servisleri (Guestbook, History)
 └── theme/              # Renk paleti ve Tema yönetimi
 ```
+
+
+
+## 👥 Proje Geliştirme Ekibi
+
+Bu proje, aşağıdaki geliştirici ekibi/öğrenciler tarafından hazırlanmıştır:
+
+| Adı Soyadı | Öğrenci Numarası |
+| :--- | :--- |
+| **Ahmet Berk Yıldız** | 225541047 |
+| **Ruşen Ali Durmaz** | 225542019 |
+| **Muhammed Sönmez** | 225541045 |
+| **Hamit Korkmaz** | 225541042 |
+| **Kenan Karabey** | 235542026 |
 
 ---
 

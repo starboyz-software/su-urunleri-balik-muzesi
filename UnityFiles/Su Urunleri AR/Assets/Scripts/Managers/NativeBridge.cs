@@ -15,6 +15,27 @@ namespace ARAquarium.Managers
     {
         [SerializeField] private FishSpawnerManager spawnerManager;
 
+        void OnEnable()
+        {
+            Application.logMessageReceived += HandleLog;
+        }
+
+        void OnDisable()
+        {
+            Application.logMessageReceived -= HandleLog;
+        }
+
+        private void HandleLog(string logString, string stackTrace, LogType type)
+        {
+            #if UNITY_IOS && !UNITY_EDITOR
+            try
+            {
+                NativeAPI.sendMessageToMobileApp($"LOG:[{type}] {logString}");
+            }
+            catch (System.Exception) {}
+            #endif
+        }
+
         void Start()
         {
             if (spawnerManager == null)
@@ -78,6 +99,15 @@ namespace ARAquarium.Managers
             if (spawnerManager != null)
             {
                 spawnerManager.OnRotateChange(direction);
+            }
+        }
+
+        public void OnDragRotate(string deltaStr)
+        {
+            Debug.Log($"[NativeBridge] BRIDGE_IN: OnDragRotate -> {deltaStr}");
+            if (spawnerManager != null)
+            {
+                spawnerManager.OnDragRotate(deltaStr);
             }
         }
     }

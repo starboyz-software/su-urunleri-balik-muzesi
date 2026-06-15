@@ -20,6 +20,6 @@ MonoBehaviour:
     zarif bir bal\u0131kt\u0131r. Deniz \xE7iftliklerinde de yeti\u015Ftirilir. Lezzetli
     beyaz etiyle sofrlar\u0131n vazge\xE7ilmezidir!"
   arPrefab: {fileID: 3883538340547171064, guid: 7f040a0de6e4540b19914f6590044d1e, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.9, g: 0.7, b: 0.15, a: 1}

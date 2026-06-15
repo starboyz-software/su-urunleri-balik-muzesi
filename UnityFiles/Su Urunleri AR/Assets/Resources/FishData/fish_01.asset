@@ -21,6 +21,6 @@ MonoBehaviour:
     T\xFCrkiye'nin en sevilen bal\u0131klar\u0131ndan biridir! Sonbaharda b\xFCy\xFCk
     s\xFCr\xFCler halinde g\xF6\xE7 eder."
   arPrefab: {fileID: 871949725542752094, guid: 96f428f8c6f85460f830b8aad7791b56, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.2, g: 0.6, b: 0.9, a: 1}

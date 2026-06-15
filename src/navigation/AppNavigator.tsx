@@ -42,12 +42,12 @@ function HomeStackScreen() {
       <Stack.Screen 
         name="FishDetail" 
         component={FishDetailScreen} 
-        options={{ tabBarStyle: { display: 'none' } }} 
+        options={{ tabBarStyle: { display: 'none' } } as any} 
       />
       <Stack.Screen 
         name="AR" 
         component={ARScreen} 
-        options={{ tabBarStyle: { display: 'none' } }} 
+        options={{ tabBarStyle: { display: 'none' } } as any} 
       />
       <Stack.Screen name="Marine" component={MarineFishesScreen} />
       <Stack.Screen name="Quiz" component={QuizScreen} />

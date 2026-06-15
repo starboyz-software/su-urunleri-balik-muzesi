@@ -17,7 +17,7 @@ namespace ARAquarium.Managers
 
         [Header("═══ Spawn ═══")]
         [SerializeField] private float spawnDistance = 2.0f;
-        [SerializeField] private float defaultScale = 0.02f;
+        [SerializeField] private float defaultScale = 0.15f;
 
         [Header("═══ İdle Hareket ═══")]
         [SerializeField] private float bobAmplitude = 0.02f;
@@ -44,6 +44,28 @@ namespace ARAquarium.Managers
         private GUIStyle titleStyle;
         private GUIStyle headerStyle;
         private bool stylesInitialized = false;
+
+        void OnEnable()
+        {
+            Application.logMessageReceived += HandleLog;
+        }
+
+        void OnDisable()
+        {
+            Application.logMessageReceived -= HandleLog;
+        }
+
+        private void HandleLog(string logString, string stackTrace, LogType type)
+        {
+            #if UNITY_IOS && !UNITY_EDITOR
+            try
+            {
+                // Accessing sendMessageToMobileApp through NativeAPI defined in ARAquarium.Managers
+                NativeAPI.sendMessageToMobileApp($"LOG:[{type}] {logString}");
+            }
+            catch (System.Exception) {}
+            #endif
+        }
 
         // ─── Start ───────────────────────────────────
         void Start()
@@ -101,17 +123,22 @@ namespace ARAquarium.Managers
         // ─── LateUpdate: Mesh'i HER FRAME hedef noktada tut ─────
         void LateUpdate()
         {
-            if (!fishActive || spawnedFish == null || fishRenderer == null) return;
+            if (!fishActive || spawnedFish == null) return;
 
             // İdle bob hareketi
             float yBob = Mathf.Sin(Time.time * bobSpeed) * bobAmplitude;
             float xBob = Mathf.Sin(Time.time * bobSpeed * 0.7f) * bobAmplitude * 0.3f;
-            Vector3 desired = desiredWorldCenter + new Vector3(xBob, yBob, 0f);
 
-            // Objenin pivot noktasını baz alarak kaydır
-            Vector3 correction = desired - spawnedFish.transform.position;
-            // Yumuşak geçiş için Lerp (isteğe bağlı ama titremeyi azaltır)
-            spawnedFish.transform.position = Vector3.Lerp(spawnedFish.transform.position, desired, Time.deltaTime * 10f);
+            if (arCamera != null && spawnedFish.transform.parent == arCamera.transform)
+            {
+                Vector3 desiredLocal = new Vector3(xBob, yBob, 1.2f);
+                spawnedFish.transform.localPosition = Vector3.Lerp(spawnedFish.transform.localPosition, desiredLocal, Time.deltaTime * 10f);
+            }
+            else
+            {
+                Vector3 desired = desiredWorldCenter + new Vector3(xBob, yBob, 0f);
+                spawnedFish.transform.position = Vector3.Lerp(spawnedFish.transform.position, desired, Time.deltaTime * 10f);
+            }
         }
 
         // ─── Spawn ──────────────────────────────────
@@ -127,22 +154,50 @@ namespace ARAquarium.Managers
             if (spawnedFish != null) Destroy(spawnedFish);
             fishActive = false;
             currentFishData = data;
-            currentScale = data.modelScale > 0 ? data.modelScale : defaultScale;
-
-            // Hedef nokta: Ekranın TAM ORTASINA ray at, 1.2m mesafeye yerleştir
-            // Balıkların pivot noktası genelde altta olduğu için biraz aşağı (-0.15f) ofset veriyoruz.
-            Ray centerRay = arCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            desiredWorldCenter = centerRay.GetPoint(1.2f) + new Vector3(0f, -0.15f, 0f);
+            currentScale = (data.modelScale >= 0.1f) ? data.modelScale : defaultScale;
 
             Debug.Log($"[ARFishTest] Spawning: {data.fishName} (ID: {data.fishID})");
 
-            // Balığı spawn et
-            spawnedFish = Instantiate(data.arPrefab);
-            spawnedFish.name = $"Fish_{data.fishID}";
-            spawnedFish.transform.localScale = Vector3.one * currentScale;
+            // WRAPPER PATTERN: Pivot = görsel merkez, ölçekleme kaymasını önler
+            GameObject wrapper = new GameObject($"FishWrapper_{data.fishID}");
+            if (arCamera != null)
+            {
+                wrapper.transform.SetParent(arCamera.transform, false);
+                wrapper.transform.localPosition = new Vector3(0f, 0f, 1.2f);
+                wrapper.transform.localRotation = Quaternion.Euler(0f, 180f, 0f); // Face the camera
+            }
+            else
+            {
+                Ray centerRay = Camera.main != null ? Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)) : arCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+                desiredWorldCenter = centerRay.GetPoint(1.2f);
+                wrapper.transform.position = desiredWorldCenter;
+            }
+            wrapper.transform.localScale = Vector3.one * currentScale;
 
-            // Renderer'ı kaydet
-            fishRenderer = spawnedFish.GetComponentInChildren<Renderer>();
+            // Balığı orijinde spawn et (temiz bounds hesabı için)
+            GameObject fishModel = Instantiate(data.arPrefab, Vector3.zero, Quaternion.identity);
+            fishModel.name = $"Fish_{data.fishID}";
+
+            // Mesh'in görsel merkezini hesapla ve wrapper pivot'una hizala
+            Renderer[] renderers = fishModel.GetComponentsInChildren<Renderer>();
+            if (renderers.Length > 0)
+            {
+                Bounds bounds = renderers[0].bounds;
+                for (int i = 1; i < renderers.Length; i++)
+                {
+                    bounds.Encapsulate(renderers[i].bounds);
+                }
+                // Mesh'i kaydırarak görsel merkezini (0,0,0)'a getir
+                fishModel.transform.position = -bounds.center;
+            }
+
+            // Wrapper'ın child'ı yap (localPosition korunur = centering korunur)
+            fishModel.transform.SetParent(wrapper.transform, false);
+
+            spawnedFish = wrapper;
+
+            // Renderer'ı kaydet (child'da)
+            fishRenderer = fishModel.GetComponentInChildren<Renderer>();
             if (fishRenderer == null)
             {
                 statusText = "❌ Renderer bulunamadı!";
@@ -150,13 +205,12 @@ namespace ARAquarium.Managers
                 return;
             }
 
-            // FishRotationHandler ekle
-            var rotHandler = spawnedFish.GetComponent<FishRotationHandler>();
-            if (rotHandler == null)
-                spawnedFish.AddComponent<FishRotationHandler>();
+            // FishRotationHandler ekle (wrapper'a)
+            if (wrapper.GetComponent<FishRotationHandler>() == null)
+                wrapper.AddComponent<FishRotationHandler>();
 
             // Animator
-            Animator animator = spawnedFish.GetComponentInChildren<Animator>();
+            Animator animator = fishModel.GetComponentInChildren<Animator>();
             if (animator != null)
             {
                 animator.enabled = true;
@@ -167,11 +221,7 @@ namespace ARAquarium.Managers
             showFishList = false;
             statusText = $"🐟 {data.fishName}";
 
-            // Bilgi panelini göster
-            // if (ARAquarium.UI.UIManager.Instance != null)
-            //     ARAquarium.UI.UIManager.Instance.ShowFishCard(data);
-
-            Debug.Log($"[ARFishTest] ✅ {data.fishName} spawn edildi. Scale: {currentScale}");
+            Debug.Log($"[ARFishTest] ✅ {data.fishName} spawn edildi (wrapper centered). Scale: {currentScale}");
         }
 
         // ─── Styles ─────────────────────────────────
@@ -230,5 +280,38 @@ namespace ARAquarium.Managers
         }
 
         // --- Helper methods for legacy UI removed to avoid clutter ---
+
+        // ─── Scale / Rotate methods (called from React Native) ───
+        public void OnScaleChange(string direction)
+        {
+            Debug.Log($"[ARFishTest] OnScaleChange -> {direction}");
+            if (spawnedFish == null) return;
+
+            float factor = (direction == "increase") ? 1.2f : 0.8f;
+            currentScale = spawnedFish.transform.localScale.x * factor;
+            currentScale = Mathf.Clamp(currentScale, 0.001f, 10.0f);
+            spawnedFish.transform.localScale = Vector3.one * currentScale;
+            Debug.Log($"[ARFishTest] Scale Adjusted: {direction}. New Scale: {currentScale}");
+        }
+
+        public void OnRotateChange(string direction)
+        {
+            Debug.Log($"[ARFishTest] OnRotateChange -> {direction}");
+            if (spawnedFish == null) return;
+
+            float amount = direction == "left" ? 15f : -15f;
+            spawnedFish.transform.Rotate(Vector3.up, amount, Space.Self);
+        }
+
+        public void OnDragRotate(string deltaStr)
+        {
+            Debug.Log($"[ARFishTest] OnDragRotate -> {deltaStr}");
+            if (spawnedFish == null) return;
+
+            if (float.TryParse(deltaStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float deltaX))
+            {
+                spawnedFish.transform.Rotate(Vector3.up, -deltaX * 2.0f, Space.Self);
+            }
+        }
     }
 }

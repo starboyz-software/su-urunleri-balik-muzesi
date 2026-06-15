@@ -1,60 +1,75 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Alert, Modal, NativeModules, PanResponder } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Alert, Modal, NativeModules, PanResponder, Animated, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import UnityView from '@azesmway/react-native-unity';
-import { ArrowLeft, RefreshCw, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from 'lucide-react-native';
+import { ArrowLeft, RefreshCw, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Droplet, Sparkles } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 import { LayoutAnimation, Platform, UIManager } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
 export default function ARScreen({ route, navigation }: any) {
   const { fish } = route.params;
   const unityRef = useRef<UnityView>(null);
   const hasSpawned = useRef(false);
+  const spawnAttempts = useRef(0);
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
   const [unityTarget, setUnityTarget] = useState('NativeBridge');
+  const [isInfoExpanded, setIsInfoExpanded] = useState(true);
+
+  // Animated values
+  const cardSlide = useRef(new Animated.Value(-200)).current;
+  const cardOpacity = useRef(new Animated.Value(0)).current;
 
   const sendFishToUnity = useCallback(() => {
-    // 9-FISH SYNCED MAPPING (Old mapping updated for new IDs if needed)
-    // Map the new string IDs to what Unity expects (fish_01, etc.)
     const fishMap: { [key: string]: string } = {
-      'alabalik': 'fish_01',
-      'benekli_siraz': 'fish_02',
-      'biyikli': 'fish_03',
-      'bizir': 'fish_04',
-      'caner': 'fish_05',
-      'elazig_sirazi': 'fish_06',
-      'gumus': 'fish_07',
-      'kefal': 'fish_08',
-      'kizilkanat': 'fish_09',
-      'kupeli': 'fish_10',
-      'sabut': 'fish_11',
-      'sazan': 'fish_12',
-      'sazan_aynali': 'fish_13',
-      'tas_isiran': 'fish_14',
-      'yayin': 'fish_15',
-      'yilan': 'fish_16'
+      'lufer': 'fish_01',
+      'cipura': 'fish_02',
+      'kefal': 'fish_03',
+      'gun_baligi': 'fish_04',
+      'kum_mercani': 'fish_05',
+      'levrek': 'fish_06',
+      'yazili_hani': 'fish_07',
+      'sarikuyruk_istavrit': 'fish_08',
+      'kupes': 'fish_09',
     };
 
     const targetID = fishMap[fish.id] || fish.id;
-    const targets = [unityTarget, 'NativeBridge', 'Game Manager', 'Native Bridge', 'FishSpawner'];
+    const targets = [unityTarget, 'NativeBridge', '[TEST] Fish Spawner', 'Game Manager', 'Native Bridge', 'FishSpawner'];
+
+    console.log(`[ARScreen] ===== SENDING FISH ID: ${fish.id} -> ${targetID} (attempt ${spawnAttempts.current + 1}) =====`);
 
     targets.forEach(target => {
       const bridge = NativeModules.UnityBridge;
       if (bridge && bridge.postMessage) {
-        console.log(`[ARScreen] Spawning Fish via Global Bridge on ${target}: ${targetID}`);
         bridge.postMessage(target, 'OnReceiveFishID', targetID);
       } else {
-        console.log(`[ARScreen] Spawning Fish via Ref Fallback on ${target}: ${targetID}`);
         unityRef.current?.postMessage(target, 'OnReceiveFishID', targetID);
       }
     });
+
+    spawnAttempts.current += 1;
   }, [fish.id, unityTarget]);
+
+  // FALLBACK: If Unity never sends "Ready", auto-spawn after a single delay
+  useEffect(() => {
+    const spawnTimer = setTimeout(() => {
+      if (!hasSpawned.current) {
+        console.log('[ARScreen] FALLBACK: Unity did not send Ready. Spawning fish once...');
+        sendFishToUnity();
+        hasSpawned.current = true;
+      }
+    }, 3000);
+
+    return () => clearTimeout(spawnTimer);
+  }, []); // Empty deps — run only once on mount
 
   const onUnityMessage = useCallback((handler: any) => {
     const message = handler.nativeEvent.message;
@@ -62,12 +77,10 @@ export default function ARScreen({ route, navigation }: any) {
     
     if (message && message.startsWith('Identity:')) {
       const actualName = message.split(':')[1];
-      console.log(`[ARScreen] Unity Identified as: ${actualName}. Updating target.`);
       setUnityTarget(actualName);
     }
 
     if (message === 'Ready' || message === 'ready') {
-      console.log('[ARScreen] Unity is Ready! Triggering auto-spawn...');
       if (!hasSpawned.current) {
         sendFishToUnity();
         hasSpawned.current = true;
@@ -76,7 +89,7 @@ export default function ARScreen({ route, navigation }: any) {
   }, [sendFishToUnity]);
 
   const handleZoomIn = () => {
-    const targets = [unityTarget, 'NativeBridge', 'Game Manager', 'Native Bridge', 'FishSpawner'];
+    const targets = [unityTarget, 'NativeBridge', '[TEST] Fish Spawner', 'Game Manager', 'Native Bridge', 'FishSpawner'];
     targets.forEach(target => {
       const bridge = NativeModules.UnityBridge;
       if (bridge && bridge.postMessage) {
@@ -88,7 +101,7 @@ export default function ARScreen({ route, navigation }: any) {
   };
 
   const handleZoomOut = () => {
-    const targets = [unityTarget, 'NativeBridge', 'Game Manager', 'Native Bridge', 'FishSpawner'];
+    const targets = [unityTarget, 'NativeBridge', '[TEST] Fish Spawner', 'Game Manager', 'Native Bridge', 'FishSpawner'];
     targets.forEach(target => {
       const bridge = NativeModules.UnityBridge;
       if (bridge && bridge.postMessage) {
@@ -102,7 +115,7 @@ export default function ARScreen({ route, navigation }: any) {
   const lastDx = useRef(0);
 
   const handleDragRotate = useCallback((deltaX: number) => {
-    const targets = [unityTarget, 'NativeBridge', 'Game Manager', 'Native Bridge', 'FishSpawner'];
+    const targets = [unityTarget, 'NativeBridge', '[TEST] Fish Spawner', 'Game Manager', 'Native Bridge', 'FishSpawner'];
     targets.forEach(target => {
       const bridge = NativeModules.UnityBridge;
       if (bridge && bridge.postMessage) {
@@ -139,10 +152,45 @@ export default function ARScreen({ route, navigation }: any) {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  const toggleInfoCard = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setIsInfoExpanded(!isInfoExpanded);
+  };
+
   useEffect(() => {
-    const timer = setTimeout(() => setShowUI(true), 2000);
+    const timer = setTimeout(() => {
+      setShowUI(true);
+      // Animate info card entrance
+      Animated.parallel([
+        Animated.spring(cardSlide, {
+          toValue: 0,
+          tension: 50,
+          friction: 8,
+          useNativeDriver: true,
+        }),
+        Animated.timing(cardOpacity, {
+          toValue: 1,
+          duration: 600,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Get fun fact for current fish
+  const funFactKey = `ar.fun_fact_${fish.id}`;
+  const funFact = t(funFactKey);
+  const hasFunFact = funFact !== funFactKey;
+
+  // Category emoji mapping
+  const categoryEmoji: { [key: string]: string } = {
+    'Economic': '💰',
+    'River': '🏞️',
+    'Predator': '🦈',
+    'Endemic': '🌟',
+    'Protected': '🛡️',
+  };
 
   return (
     <View style={styles.container}>
@@ -150,31 +198,108 @@ export default function ARScreen({ route, navigation }: any) {
         ref={unityRef}
         style={StyleSheet.absoluteFill}
         onUnityMessage={onUnityMessage}
-        onReady={() => {
-          console.log('[ARScreen] Unity View Ready');
-        }}
-      />
-
-      <View 
-        style={StyleSheet.absoluteFill} 
-        {...panResponder.panHandlers} 
-        pointerEvents="auto"
       />
 
       {showUI && (
         <View style={StyleSheet.absoluteFill} pointerEvents="box-none">
-          <View style={styles.modalOverlay} pointerEvents="box-none">
-            <View style={[styles.topBar, { paddingTop: insets.top + 10 }]} pointerEvents="box-none">
-              <TouchableOpacity 
-                style={styles.backButton} 
-                onPress={() => navigation.goBack()}
-              >
-                <ArrowLeft color="white" size={24} />
-                <Text style={styles.backText}>{t('common.back')}</Text>
-              </TouchableOpacity>
-            </View>
+          {/* Transparent backdrop that captures drag events to rotate the fish */}
+          <View
+            style={StyleSheet.absoluteFill}
+            pointerEvents="auto"
+            {...panResponder.panHandlers}
+          />
 
-            <View style={[styles.rightControls, { top: '30%' }]} pointerEvents="box-none">
+          <View style={styles.modalOverlay} pointerEvents="box-none">
+            {/* === TOP: Back Button + Info Card === */}
+            <Animated.View 
+              style={[
+                styles.topSection, 
+                { 
+                  paddingTop: insets.top + 8,
+                  transform: [{ translateY: cardSlide }],
+                  opacity: cardOpacity,
+                }
+              ]} 
+              pointerEvents="box-none"
+            >
+              {/* Back Button Row */}
+              <View style={styles.topBarRow} pointerEvents="box-none">
+                <TouchableOpacity 
+                  style={styles.backButton} 
+                  onPress={() => navigation.goBack()}
+                >
+                  <ArrowLeft color="white" size={22} />
+                  <Text style={styles.backText}>{t('common.back')}</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Fish Info Card */}
+              <View style={styles.infoCardWrapper}>
+                <LinearGradient
+                  colors={['rgba(0, 180, 255, 0.85)', 'rgba(100, 50, 255, 0.85)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.infoCardGradient}
+                >
+                  {/* Header row: Fish name + toggle */}
+                  <TouchableOpacity 
+                    style={styles.infoCardHeader} 
+                    onPress={toggleInfoCard}
+                    activeOpacity={0.8}
+                  >
+                    <View style={styles.fishNameRow}>
+                      <Text style={styles.fishEmoji}>🐟</Text>
+                      <View style={styles.fishNameCol}>
+                        <Text style={styles.infoFishName} numberOfLines={1}>
+                          {t(fish.nameKey)}
+                        </Text>
+                        <Text style={styles.infoSpecies}>{fish.species}</Text>
+                      </View>
+                    </View>
+                    <View style={styles.toggleButton}>
+                      {isInfoExpanded ? (
+                        <ChevronUp color="rgba(255,255,255,0.9)" size={20} />
+                      ) : (
+                        <ChevronDown color="rgba(255,255,255,0.9)" size={20} />
+                      )}
+                    </View>
+                  </TouchableOpacity>
+
+                  {/* Expandable details */}
+                  {isInfoExpanded && (
+                    <View style={styles.infoCardBody}>
+                      {/* Tags Row */}
+                      <View style={styles.tagsRow}>
+                        <View style={styles.tagPill}>
+                          <Text style={styles.tagPillText}>
+                            {categoryEmoji[fish.category] || '🐠'} {t(fish.tagKey)}
+                          </Text>
+                        </View>
+                        {fish.category === 'Endemic' && (
+                          <View style={[styles.tagPill, styles.tagPillSpecial]}>
+                            <Text style={styles.tagPillText}>🌟 Nadir Tür</Text>
+                          </View>
+                        )}
+                      </View>
+
+                      {/* Fun Fact Box */}
+                      {hasFunFact && (
+                        <View style={styles.funFactBox}>
+                          <View style={styles.funFactHeader}>
+                            <Sparkles color="#FFD700" size={16} />
+                            <Text style={styles.funFactTitle}>{t('ar.fun_fact_label')}</Text>
+                          </View>
+                          <Text style={styles.funFactText}>{funFact}</Text>
+                        </View>
+                      )}
+                    </View>
+                  )}
+                </LinearGradient>
+              </View>
+            </Animated.View>
+
+            {/* === RIGHT: Zoom Controls === */}
+            <View style={[styles.rightControls, { top: '40%' }]} pointerEvents="box-none">
               {isSidebarCollapsed ? (
                 <TouchableOpacity style={styles.expandButton} onPress={toggleSidebar}>
                   <ChevronLeft color="white" size={24} />
@@ -195,10 +320,11 @@ export default function ARScreen({ route, navigation }: any) {
               )}
             </View>
 
-            <View style={[styles.bottomInfo, { paddingBottom: insets.bottom + 20 }]} pointerEvents="box-none">
-              <View style={styles.infoCard}>
-                <Text style={styles.fishName}>{t(fish.nameKey)}</Text>
-                <Text style={styles.fishTag}>{t(fish.tagKey)}</Text>
+            {/* === BOTTOM: Minimal Fish Name === */}
+            <View style={[styles.bottomInfo, { paddingBottom: insets.bottom + 16 }]} pointerEvents="box-none">
+              <View style={styles.bottomBadge}>
+                <Droplet color="rgba(255,255,255,0.8)" size={14} />
+                <Text style={styles.bottomBadgeText}>AR Görüntüleyici</Text>
               </View>
             </View>
           </View>
@@ -216,33 +342,147 @@ const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
   },
-  topBar: {
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
+  // === TOP SECTION ===
+  topSection: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     zIndex: 10,
+    paddingHorizontal: 16,
+  },
+  topBarRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 25,
+    paddingHorizontal: 14,
+    paddingVertical: 9,
+    borderRadius: 22,
   },
   backText: {
     color: 'white',
-    marginLeft: 8,
-    fontSize: 16,
+    marginLeft: 6,
+    fontSize: 15,
     fontWeight: '600',
   },
+  // === INFO CARD ===
+  infoCardWrapper: {
+    borderRadius: 20,
+    overflow: 'hidden',
+    // Subtle shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  infoCardGradient: {
+    borderRadius: 20,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)',
+  },
+  infoCardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  fishNameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  fishEmoji: {
+    fontSize: 32,
+    marginRight: 10,
+  },
+  fishNameCol: {
+    flex: 1,
+  },
+  infoFishName: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    letterSpacing: 0.3,
+  },
+  infoSpecies: {
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 12,
+    fontStyle: 'italic',
+    marginTop: 1,
+  },
+  toggleButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // === CARD BODY ===
+  infoCardBody: {
+    marginTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.15)',
+    paddingTop: 12,
+  },
+  tagsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 10,
+  },
+  tagPill: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+  },
+  tagPillSpecial: {
+    backgroundColor: 'rgba(255, 215, 0, 0.25)',
+    borderColor: 'rgba(255, 215, 0, 0.4)',
+  },
+  tagPillText: {
+    color: 'white',
+    fontSize: 13,
+    fontWeight: '600',
+  },
+  // === FUN FACT ===
+  funFactBox: {
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    borderRadius: 14,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  funFactHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+    gap: 6,
+  },
+  funFactTitle: {
+    color: '#FFD700',
+    fontSize: 13,
+    fontWeight: 'bold',
+  },
+  funFactText: {
+    color: 'rgba(255,255,255,0.95)',
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '500',
+  },
+  // === RIGHT CONTROLS ===
   rightControls: {
     position: 'absolute',
-    right: 20,
+    right: 16,
     zIndex: 10,
     alignItems: 'center',
   },
@@ -251,6 +491,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
   },
   controlButton: {
     backgroundColor: 'rgba(255,255,255,0.2)',
@@ -278,6 +520,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 5,
   },
+  // === BOTTOM ===
   bottomInfo: {
     position: 'absolute',
     bottom: 0,
@@ -285,23 +528,21 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'center',
   },
-  infoCard: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 15,
+  bottomBadge: {
+    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    gap: 6,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
+    borderColor: 'rgba(255,255,255,0.1)',
   },
-  fishName: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  fishTag: {
+  bottomBadgeText: {
     color: 'rgba(255,255,255,0.8)',
-    fontSize: 14,
-    marginTop: 2,
+    fontSize: 13,
+    fontWeight: '600',
   },
 });
+

@@ -72,20 +72,38 @@ namespace ARAquarium.Managers
         public void SpawnByID(string fishID)
         {
             lastReceivedID = fishID;
+            Debug.Log($"[FishSpawner] SpawnByID called with ID: '{fishID}'");
             if (fishDatabase == null) 
             {
                 Debug.LogError("[FishSpawner] FishDatabase is NULL!");
                 return;
             }
 
+            if (fishDatabase.fishes != null)
+            {
+                Debug.Log($"[FishSpawner] Database has {fishDatabase.fishes.Count} fishes.");
+                foreach (var f in fishDatabase.fishes)
+                {
+                    if (f != null)
+                        Debug.Log($"[FishSpawner] DB Entry: ID='{f.fishID}' Name='{f.fishName}' Prefab='{(f.arPrefab != null ? f.arPrefab.name : "NULL")}'");
+                    else
+                        Debug.LogWarning("[FishSpawner] Found a NULL FishData entry in the database list!");
+                }
+            }
+            else
+            {
+                Debug.LogError("[FishSpawner] database fishes list is NULL!");
+            }
+
             FishData data = fishDatabase.GetFishByID(fishID);
             if (data != null) 
             {
+                Debug.Log($"[FishSpawner] Successfully found FishData for ID '{fishID}': Name='{data.fishName}' Prefab='{(data.arPrefab != null ? data.arPrefab.name : "NULL")}'");
                 SpawnFish(data);
             }
             else
             {
-                Debug.LogWarning($"[FishSpawner] ID not found in database: {fishID}");
+                Debug.LogWarning($"[FishSpawner] ID not found in database: '{fishID}'");
             }
         }
 
@@ -107,7 +125,7 @@ namespace ARAquarium.Managers
             
             // Cast a ray from the center of the screen
             Ray centerRay = arCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            Vector3 spawnPosition = centerRay.GetPoint(1.2f) + new Vector3(0f, -0.15f, 0f); // 1.2m away, slightly down
+            Vector3 spawnPosition = centerRay.GetPoint(1.2f); // 1.2m away, centered
             
             // Look towards the camera but keep it level
             Vector3 lookDirection = arCamera.transform.position - spawnPosition;
@@ -117,12 +135,21 @@ namespace ARAquarium.Managers
             Debug.Log("[FishSpawner] INSTANT SPAWN: Placing fish directly in front of camera.");
 
             // Scale calculation
-            float scale = (data.modelScale > 0 ? data.modelScale : 0.02f) * 3.0f;
+            float scale = (data.modelScale >= 0.1f ? data.modelScale : 0.15f) * 3.0f;
             
             // Create a wrapper object to act as the true center pivot
             GameObject wrapper = new GameObject($"FishWrapper_{data.fishID}");
-            wrapper.transform.position = spawnPosition;
-            wrapper.transform.rotation = spawnRotation;
+            if (arCamera != null)
+            {
+                wrapper.transform.SetParent(arCamera.transform, false);
+                wrapper.transform.localPosition = new Vector3(0f, 0f, 1.2f);
+                wrapper.transform.localRotation = Quaternion.Euler(0f, 180f, 0f); // Face the camera
+            }
+            else
+            {
+                wrapper.transform.position = spawnPosition;
+                wrapper.transform.rotation = spawnRotation;
+            }
             wrapper.transform.localScale = Vector3.one * scale;
 
             // Instantiate prefab at world origin to calculate clean bounds
@@ -177,7 +204,7 @@ namespace ARAquarium.Managers
             if (currentSpawnedFish == null) return;
             
             float amount = direction == "left" ? 15f : -15f;
-            currentSpawnedFish.transform.Rotate(Vector3.up, amount, Space.World);
+            currentSpawnedFish.transform.Rotate(Vector3.up, amount, Space.Self);
         }
 
         public void OnDragRotate(string deltaStr)
@@ -187,7 +214,7 @@ namespace ARAquarium.Managers
             if (float.TryParse(deltaStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float deltaX))
             {
                 // Balığı sürükleme miktarına göre döndür
-                currentSpawnedFish.transform.Rotate(Vector3.up, -deltaX * 2.0f, Space.World);
+                currentSpawnedFish.transform.Rotate(Vector3.up, -deltaX * 2.0f, Space.Self);
             }
         }
     }

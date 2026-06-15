@@ -20,6 +20,6 @@ MonoBehaviour:
     bal\u0131\u011F\u0131d\u0131r. Turuncu ve mavi renkleriyle g\xF6z kama\u015Ft\u0131r\u0131r.
     Sakin sularda ya\u015Far ve b\xF6ceklerle beslenir."
   arPrefab: {fileID: 4721968504957987918, guid: 22b1b488e32684a519135bfe89c16ad9, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.9, g: 0.4, b: 0.2, a: 1}

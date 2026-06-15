@@ -20,6 +20,6 @@ MonoBehaviour:
     Alt\u0131n sar\u0131s\u0131 \xE7izgileri vard\u0131r. S\xFCr\xFCler halinde k\u0131y\u0131
     sular\u0131nda gezer ve yosunlarla beslenir."
   arPrefab: {fileID: 5706824549198178975, guid: f4ff9a87158cf4008aeb08898daf3194, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.45, g: 0.65, b: 0.25, a: 1}

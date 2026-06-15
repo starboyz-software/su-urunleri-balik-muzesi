@@ -20,6 +20,6 @@ MonoBehaviour:
     uysal bir bal\u0131kt\u0131r. Geni\u015F ba\u015F\u0131 ve b\xFCy\xFCk g\xF6zleriyle
     tan\u0131n\u0131r. S\xFCr\xFCler halinde y\xFCzmeyi sever!"
   arPrefab: {fileID: 4868608538586839377, guid: 4149d32b086954950bf7e6cee7a84185, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.25, g: 0.75, b: 0.45, a: 1}

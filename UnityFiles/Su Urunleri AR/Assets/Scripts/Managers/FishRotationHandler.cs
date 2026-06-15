@@ -115,7 +115,7 @@ namespace ARAquarium.Managers
             float rotX = delta.y * rotationSpeed;
             
             // X ekseninde döndürmeyi kapatalım (balık sadece sağa sola dönsün)
-            transform.Rotate(Vector3.up, rotY, Space.World);
+            transform.Rotate(Vector3.up, rotY, Space.Self);
             // transform.Rotate(Vector3.right, rotX, Space.World);
         }
         

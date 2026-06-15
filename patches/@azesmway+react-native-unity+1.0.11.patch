@@ -1,0 +1,340 @@
+diff --git a/a/node_modules/@azesmway/react-native-unity/ios/RNUnityView.mm b/b/node_modules/@azesmway/react-native-unity/ios/RNUnityView.mm
+index a4caa74..da3cb20 100644
+--- a/a/node_modules/@azesmway/react-native-unity/ios/RNUnityView.mm
++++ b/b/node_modules/@azesmway/react-native-unity/ios/RNUnityView.mm
+@@ -6,6 +6,8 @@
+ using namespace facebook::react;
+ #endif
+ 
++// PATCHED_V5 - this comment prevents expo config plugin withUnity.js from corrupting this file
++
+ NSString *bundlePathStr = @"/Frameworks/UnityFramework.framework";
+ int gArgc = 1;
+ 
+@@ -32,7 +34,9 @@
+     return ufw;
+ }
+ 
+-@implementation RNUnityView
++@implementation RNUnityView {
++    BOOL _needsUnityInit;
++}
+ 
+ NSDictionary* appLaunchOpts;
+ 
+@@ -44,49 +48,200 @@ - (bool)unityIsInitialized {
+ 
+ - (void)initUnityModule {
+     @try {
++        [self sendMessageToMobileApp:@"Status:InitStarted"];
++        
+         if([self unityIsInitialized]) {
++            [self sendMessageToMobileApp:@"Status:AlreadyInitializedInstance"];
+             return;
+         }
+ 
+-        [self setUfw: UnityFrameworkLoad()];
+-        [[self ufw] registerFrameworkListener: self];
++        NSLog(@"[RNUnity] initUnityModule called. self.bounds=%@, self.window=%@",
++              NSStringFromCGRect(self.bounds), self.window);
+ 
+-        unsigned count = (int) [[[NSProcessInfo processInfo] arguments] count];
+-        char **array = (char **)malloc((count + 1) * sizeof(char*));
++        UnityFramework* ufw = UnityFrameworkLoad();
++        [self setUfw: ufw];
++        
++        if (!ufw) {
++            NSLog(@"[RNUnity] ERROR: UnityFrameworkLoad returned nil!");
++            [self sendMessageToMobileApp:@"Status:Error_FrameworkLoadNil"];
++            return;
++        }
++        
++        [self sendMessageToMobileApp:@"Status:FrameworkLoaded"];
++        NSLog(@"[RNUnity] UnityFramework loaded successfully");
++        
++        [[self ufw] registerFrameworkListener: self];
+ 
+-        for (unsigned i = 0; i < count; i++)
+-        {
+-             array[i] = strdup([[[[NSProcessInfo processInfo] arguments] objectAtIndex:i] UTF8String]);
++        BOOL alreadyInitialized = ([ufw appController] != nil);
++        if (!alreadyInitialized) {
++            NSLog(@"[RNUnity] Unity not initialized globally. Initializing now...");
++            [self sendMessageToMobileApp:@"Status:InitializingGlobally"];
++            unsigned count = (int) [[[NSProcessInfo processInfo] arguments] count];
++            char **array = (char **)malloc((count + 1) * sizeof(char*));
++
++            for (unsigned i = 0; i < count; i++)
++            {
++                 array[i] = strdup([[[[NSProcessInfo processInfo] arguments] objectAtIndex:i] UTF8String]);
++            }
++            array[count] = NULL;
++
++            NSLog(@"[RNUnity] Calling runEmbeddedWithArgc...");
++            [[self ufw] runEmbeddedWithArgc: gArgc argv: array appLaunchOpts: appLaunchOpts];
++            NSLog(@"[RNUnity] runEmbeddedWithArgc completed");
++            [self sendMessageToMobileApp:@"Status:RunEmbeddedCompleted"];
++            
++            [[self ufw] appController].quitHandler = ^(){ NSLog(@"AppController.quitHandler called"); };
++        } else {
++            NSLog(@"[RNUnity] Unity already initialized globally. Skipping runEmbeddedWithArgc.");
++            [self sendMessageToMobileApp:@"Status:AlreadyInitializedGlobally"];
+         }
+-        array[count] = NULL;
+ 
+-        [[self ufw] runEmbeddedWithArgc: gArgc argv: array appLaunchOpts: appLaunchOpts];
+-        [[self ufw] appController].quitHandler = ^(){ NSLog(@"AppController.quitHandler called"); };
+-        [self.ufw.appController.rootView removeFromSuperview];
++        UIView *unityRootView = self.ufw.appController.rootView;
++        NSLog(@"[RNUnity] Unity rootView: %@, frame: %@", unityRootView, NSStringFromCGRect(unityRootView.frame));
++        
++        if (!unityRootView) {
++            [self sendMessageToMobileApp:@"Status:Error_RootViewNil"];
++            return;
++        }
++        
++        [self sendMessageToMobileApp:[NSString stringWithFormat:@"Status:RootViewFound_Frame_%@", NSStringFromCGRect(unityRootView.frame)]];
++        [unityRootView removeFromSuperview];
+ 
++        // Find the main React Native window and windowScene
++        UIWindowScene *windowScene = nil;
++        UIWindow *mainWindow = nil;
+         if (@available(iOS 13.0, *)) {
+-            [[[[self ufw] appController] window] setWindowScene: nil];
++            for (UIScene *scene in [UIApplication sharedApplication].connectedScenes) {
++                if ([scene isKindOfClass:[UIWindowScene class]]) {
++                    UIWindowScene *ws = (UIWindowScene *)scene;
++                    if (ws.activationState == UISceneActivationStateForegroundActive) {
++                        windowScene = ws;
++                        break;
++                    }
++                    windowScene = ws; // fallback to any scene
++                }
++            }
++            if (windowScene != nil) {
++                for (UIWindow *window in windowScene.windows) {
++                    if (window.isKeyWindow) {
++                        mainWindow = window;
++                        break;
++                    }
++                }
++                if (!mainWindow && windowScene.windows.count > 0) {
++                    mainWindow = windowScene.windows.firstObject;
++                }
++            }
++        }
++        if (!mainWindow) {
++            mainWindow = [[[UIApplication sharedApplication] delegate] window];
++            if (@available(iOS 13.0, *)) {
++                if (mainWindow) {
++                    windowScene = mainWindow.windowScene;
++                }
++            }
++        }
++        
++        [self sendMessageToMobileApp:[NSString stringWithFormat:@"Status:MainWindow_%@_Scene_%@", mainWindow ? @"Found" : @"Nil", windowScene ? @"Found" : @"Nil"]];
++
++        UIWindow *unityWindow = [[[self ufw] appController] window];
++        [self sendMessageToMobileApp:[NSString stringWithFormat:@"Status:UnityWindow_%@", unityWindow ? @"Found" : @"Nil"]];
++        
++        if (unityWindow != nil) {
++            // Share the windowScene from the main app window so Unity's rendering pipeline activates
++            if (@available(iOS 13.0, *)) {
++                if (windowScene != nil) {
++                    [unityWindow setWindowScene: windowScene];
++                } else {
++                    NSLog(@"[RNUnity] WARNING: windowScene is nil!");
++                }
++            } else {
++                [unityWindow setScreen: [UIScreen mainScreen]];
++            }
++            
++            // Add Unity's rootView as our subview FIRST (matches withUnity.js exactly)
++            if (!CGRectIsEmpty(self.bounds)) {
++                unityRootView.frame = self.bounds;
++            } else {
++                unityRootView.frame = [UIScreen mainScreen].bounds; // Use screen bounds as safe initial fallback
++            }
++            
++            if (![self.subviews containsObject:unityRootView]) {
++                [self addSubview:unityRootView];
++            }
++            
++            // Temporarily make Unity window key to boot graphics pipeline
++            [unityWindow makeKeyAndVisible];
++            
++            // Immediately restore React Native main window as key
++            if (mainWindow != nil) {
++                [mainWindow makeKeyAndVisible];
++            }
++            
++            // CRITICAL: Push the transparent Unity window behind the React Native main window
++            // and disable touch interaction on it so it doesn't block touches on the React Native buttons.
++            unityWindow.windowLevel = UIWindowLevelNormal - 1;
++            unityWindow.userInteractionEnabled = NO;
++            
++            [self sendMessageToMobileApp:@"Status:WindowPipelineBooted"];
+         } else {
+-            [[[[self ufw] appController] window] setScreen: nil];
++            // Fallback: if unityWindow is nil, just add rootView as subview directly
++            if (!CGRectIsEmpty(self.bounds)) {
++                unityRootView.frame = self.bounds;
++            } else {
++                unityRootView.frame = [UIScreen mainScreen].bounds;
++            }
++            if (![self.subviews containsObject:unityRootView]) {
++                [self addSubview:unityRootView];
++            }
++            [self sendMessageToMobileApp:@"Status:DirectRootViewAttachedFallback"];
+         }
+ 
+-        [[[[self ufw] appController] window] addSubview: self.ufw.appController.rootView];
+-        [[[[self ufw] appController] window] makeKeyAndVisible];
+-        [[[[[[self ufw] appController] window] rootViewController] view] setNeedsLayout];
+-
+         [NSClassFromString(@"FrameworkLibAPI") registerAPIforNativeCalls:self];
++        [self sendMessageToMobileApp:@"Status:Success"];
+     }
+     @catch (NSException *e) {
+-        NSLog(@"%@",e);
++        NSLog(@"[RNUnity] EXCEPTION in initUnityModule: %@", e);
++        [self sendMessageToMobileApp:[NSString stringWithFormat:@"Status:Exception_%@", e.reason]];
++    }
++}
++
++- (void)didMoveToWindow {
++    [super didMoveToWindow];
++    
++    // We send status message if self.onUnityMessage is bound, or log it
++    NSLog(@"[RNUnity] didMoveToWindow called. window=%@, bounds=%@, needsInit=%d, initialized=%d",
++          self.window, NSStringFromCGRect(self.bounds), _needsUnityInit, [self unityIsInitialized]);
++    
++    [self sendMessageToMobileApp:[NSString stringWithFormat:@"Status:didMoveToWindow_Window_%@_Bounds_%@_NeedsInit_%d",
++                                  self.window ? @"Found" : @"Nil", NSStringFromCGRect(self.bounds), _needsUnityInit]];
++    
++    if (self.window != nil && _needsUnityInit && ![self unityIsInitialized]) {
++        _needsUnityInit = NO;
++        // Dispatch async to ensure layout has settled
++        dispatch_async(dispatch_get_main_queue(), ^{
++            [self sendMessageToMobileApp:@"Status:TriggeringDeferredInitFromDidMoveToWindow"];
++            [self initUnityModule];
++        });
+     }
+ }
+ 
+ - (void)layoutSubviews {
+    [super layoutSubviews];
++   
++   [self sendMessageToMobileApp:[NSString stringWithFormat:@"Status:layoutSubviews_Bounds_%@_Initialized_%d",
++                                 NSStringFromCGRect(self.bounds), [self unityIsInitialized]]];
+ 
+    if([self unityIsInitialized]) {
+       self.ufw.appController.rootView.frame = self.bounds;
+-      [self addSubview:self.ufw.appController.rootView];
++      if (![self.subviews containsObject:self.ufw.appController.rootView]) {
++          [self addSubview:self.ufw.appController.rootView];
++      }
++      [self bringSubviewToFront:self.ufw.appController.rootView];
++   } else if (_needsUnityInit && self.window != nil && !CGRectIsEmpty(self.bounds)) {
++      [self sendMessageToMobileApp:@"Status:TriggeringDeferredInitFromLayoutSubviews"];
++      _needsUnityInit = NO;
++      [self initUnityModule];
+    }
+ }
+ 
+@@ -167,6 +322,7 @@ - (void)prepareForRecycle {
+ 
+       [self setUfw:nil];
+     }
++    _needsUnityInit = NO;
+ }
+ 
+ + (ComponentDescriptorProvider)componentDescriptorProvider {
+@@ -177,6 +333,7 @@ - (instancetype)initWithFrame:(CGRect)frame {
+   if (self = [super initWithFrame:frame]) {
+     static const auto defaultProps = std::make_shared<const RNUnityViewProps>();
+     _props = defaultProps;
++    _needsUnityInit = YES;
+ 
+     self.onUnityMessage = [self](NSDictionary* data) {
+       if (_eventEmitter != nil) {
+@@ -198,7 +355,15 @@ - (void)updateEventEmitter:(EventEmitter::Shared const &)eventEmitter {
+ 
+ - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+     if (![self unityIsInitialized]) {
+-      [self initUnityModule];
++      // Don't initialize immediately - defer until view is in window with valid bounds
++      if (self.window != nil && !CGRectIsEmpty(self.bounds)) {
++          NSLog(@"[RNUnity] updateProps: view ready, initializing immediately");
++          [self initUnityModule];
++      } else {
++          NSLog(@"[RNUnity] updateProps: view not ready (window=%@, bounds=%@), deferring init",
++                self.window, NSStringFromCGRect(self.bounds));
++          _needsUnityInit = YES;
++      }
+     }
+ 
+     [super updateProps:props oldProps:oldProps];
+@@ -214,13 +379,27 @@ - (void)handleCommand:(nonnull const NSString *)commandName args:(nonnull const
+ 
+ #else
+ 
+--(id)initWithFrame:(CGRect)frame {
+-    self = [super initWithFrame:frame];
++- (instancetype)init {
++    self = [super init];
++    if (self) {
++        _needsUnityInit = YES;
++    }
++    return self;
++}
+ 
++- (instancetype)initWithFrame:(CGRect)frame {
++    self = [super initWithFrame:frame];
+     if (self) {
+-        [self initUnityModule];
++        _needsUnityInit = YES;
+     }
++    return self;
++}
+ 
++- (instancetype)initWithCoder:(NSCoder *)coder {
++    self = [super initWithCoder:coder];
++    if (self) {
++        _needsUnityInit = YES;
++    }
+     return self;
+ }
+ 
+diff --git a/a/node_modules/@azesmway/react-native-unity/react-native-unity.podspec b/b/node_modules/@azesmway/react-native-unity/react-native-unity.podspec
+index af0ea2c..41aeab6 100644
+--- a/a/node_modules/@azesmway/react-native-unity/react-native-unity.podspec
++++ b/b/node_modules/@azesmway/react-native-unity/react-native-unity.podspec
+@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
+   s.platforms    = { :ios => "12.4" }
+   s.source       = { :git => "https://github.com/azesmway/react-native-unity.git", :tag => "#{s.version}" }
+ 
+-  s.source_files = "ios/**/*.{h,m,mm}"
++  s.source_files = "ios/*.{h,m,mm}"
+ 
+   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
+   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
+@@ -46,7 +46,18 @@ Pod::Spec.new do |s|
+   s.prepare_command =
+   <<-CMD
+     cp -R ../../../unity/builds/ios/ ios/
++    mkdir -p ios/Headers/UnityFramework
++    cp ios/UnityFramework/UnityFramework.h ios/Headers/UnityFramework/
++    cp ios/Libraries/Plugins/iOS/NativeCallProxy.h ios/Headers/UnityFramework/
++    cp ios/Classes/UnityAppController.h ios/Headers/UnityFramework/
++    cp ios/Classes/PluginBase/RenderPluginDelegate.h ios/Headers/UnityFramework/
++    cp ios/Classes/PluginBase/LifeCycleListener.h ios/Headers/UnityFramework/
+   CMD
+ 
+   s.vendored_frameworks = ["ios/UnityFramework.framework"]
++
++  s.pod_target_xcconfig = {
++    'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_TARGET_SRCROOT)/ios/Headers" "$(PODS_ROOT)/Headers/Private/Yoga"',
++    'CLANG_CXX_LANGUAGE_STANDARD' => 'c++20'
++  }
+ end

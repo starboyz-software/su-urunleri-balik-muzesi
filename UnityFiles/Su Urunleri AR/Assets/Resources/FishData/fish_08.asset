@@ -20,6 +20,6 @@ MonoBehaviour:
     kolayca tan\u0131n\u0131r. B\xFCy\xFCk s\xFCr\xFCler halinde y\xFCzer ve \xE7ok
     h\u0131zl\u0131d\u0131r! Denizlerin maratonculusudur."
   arPrefab: {fileID: 8902420304263222675, guid: d778a623da755431b92ffce9c1a4cfbc, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.3, g: 0.8, b: 0.8, a: 1}

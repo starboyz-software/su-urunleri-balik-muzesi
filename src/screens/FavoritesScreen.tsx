@@ -153,6 +153,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  fishImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
   heartButton: {
     position: 'absolute',
     top: 10,

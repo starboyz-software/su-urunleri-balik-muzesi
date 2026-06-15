@@ -144,94 +144,51 @@
     "10": { "title": "Smart Chubs", "text": "Freshwater chubs are very smart; they move away even when they see the shadow of the fisherman." }
   },
   "fish": {
-    "1": {
-      "name": "Euphrates Pike (Caner)",
-      "tag": "King",
-      "description": "The most magnificent and massive predator of the Euphrates and Tigris rivers. Known locally as 'Caner', this species is also called the 'Tiger of the Water' in Mesopotamian history. It is completely carnivorous, feeding on other fish, water birds, and even small mammals. Reaching over 2 meters in length and over 100 kilograms in weight, it is one of the largest freshwater fish."
+    "lufer": {
+      "name": "Bluefish",
+      "tag": "Lord of the Bosphorus",
+      "description": "One of the most noble predators of our seas and the Euphrates basin. Known for its sharp teeth and strong, aggressive hunting style."
     },
-    "2": {
-      "name": "Elazığ Barb",
-      "tag": "Native",
-      "description": "An endemic species unique to our region, also known as 'Umbla' in the scientific world. It prefers to live in the cool, clear, and high-oxygen waters of the Euphrates basin. Its mouth structure is evolved for scraping algae off underwater rocks."
+    "cipura": {
+      "name": "Gilt-head Bream",
+      "tag": "Aegean Breeze",
+      "description": "One of the most popular economic species of the Mediterranean and Aegean, highly valued for its delicious meat and oval body shape."
     },
-    "3": {
-      "name": "Shabut",
-      "tag": "Euphrates Pearl",
-      "description": "A scaled and delicious species unique to the Euphrates and Tigris rivers. Known for its strong swimming ability against river currents. It holds a very important place in regional cuisine."
+    "kefal": {
+      "name": "Flathead Grey Mullet",
+      "tag": "Agile Swimmer",
+      "description": "A smart bottom-feeding coastal fish that lives in schools and can survive easily in both fresh and saltwater environments."
     },
-    "4": {
-      "name": "Mesopotamian Catfish",
-      "tag": "Night Hunter",
-      "description": "A scale-less and whiskered bottom fish that has maintained its form for millions of years. This night-hunting predator can feed on all kinds of creatures on the riverbed."
+    "gun_baligi": {
+      "name": "Ornate Wrasse",
+      "tag": "Colorful Reef",
+      "description": "The most eye-catching, colorful fish of the reefs with vibrant green, blue, red, and orange tones along its body."
     },
-    "5": {
-      "name": "Rainbow Trout",
-      "tag": "Cold Water Resident",
-      "description": "A species with high economic value, especially intensively farmed in Keban and Çırçır regions. It gets its name from the pink stripe on its side."
+    "kum_mercani": {
+      "name": "Sand Steenbras",
+      "tag": "Sand Scanner",
+      "description": "Distinguished by transverse black vertical bars on its body. It searches sandy seabeds for small crustaceans."
     },
-    "6": {
-      "name": "Spotted Barb",
-      "tag": "Stream Master",
-      "description": "Known for its characteristic spots on its body, this barb species loves fast-flowing waters. With its agile structure, it moves easily against the current."
+    "levrek": {
+      "name": "European Seabass",
+      "tag": "Master Hunter",
+      "description": "A predatory fish that hunts near river mouths and coasts, known for its fast, agile structure and excellent camouflage."
     },
-    "7": {
-      "name": "Bearded Fish",
-      "tag": "Bottom Specialist",
-      "description": "A strong-bodied fish that easily finds food on the riverbed thanks to the whiskers around its mouth. It prefers rocky and gravelly floors."
+    "yazili_hani": {
+      "name": "Painted Comber",
+      "tag": "Reef Dweller",
+      "description": "Named for the complex blue-purple patterns on its head that resemble intricate handwriting."
     },
-    "8": {
-      "name": "Bizir",
-      "tag": "Rare Species",
-      "description": "One of the special species of the Euphrates basin. It differs from other cyprinids with its long and thin body structure. It is of great importance for scientific research."
+    "sarikuyruk_istavrit": {
+      "name": "Yellowtail Horse Mackerel",
+      "tag": "Golden Fin",
+      "description": "A horse mackerel species distinguished by its bright yellow tail and bony scales along its lateral line."
     },
-    "9": {
-      "name": "Silver Fish",
-      "tag": "Small and Bright",
-      "description": "A small fish that lives in schools in dam lakes and shines with its silver color. It is an important food source for other predatory fish in the ecosystem."
-    },
-    "10": {
-      "name": "Freshwater Chub",
-      "tag": "Smart Hunter",
-      "description": "A fish known for its sharp eyes and intelligence, making it difficult to catch. It is a resilient species that can consume both plant and animal foods."
-    },
-    "11": {
-      "name": "Rudd",
-      "tag": "Red Wing",
-      "description": "Recognized by the bright red color on its fins, it is an aesthetic species that loves stagnant and plant-rich waters. Frequently found in dam lakes."
-    },
-    "12": {
-      "name": "Earring Fish",
-      "tag": "Silvery",
-      "description": "A fish that resembles silver with its body structure and scales, living in the middle sections of rivers. It travels in schools."
-    },
-    "13": {
-      "name": "Common Carp",
-      "tag": "Basin Classic",
-      "description": "The most resilient and widespread fish of fresh waters. It likes to feed on muddy floors and can live for many years."
-    },
-    "14": {
-      "name": "Spined Loach",
-      "tag": "Small Protector",
-      "description": "A small endemic species living at the bottom, with a body form resembling an eel. It feeds on small creatures among the rocks."
-    },
-    "15": {
-      "name": "Eel",
-      "tag": "Traveler",
-      "description": "A mysterious and oily fish species living in our rivers, traveling thousands of kilometers to the Sargasso Sea to spawn."
-    },
-    "16": {
-      "name": "Mirror Carp",
-      "tag": "Keban Pearl",
-      "description": "One of the most characteristic residents of Keban and Karakaya Dam Lakes. It is easily distinguished from other carp species by the small number of very large and shiny scales on its body. Mirror Carp, which has an omnivorous diet, consumes underwater plant roots, insect larvae, and small crustaceans."
-    },
-    "lufer": { "name": "Bluefish", "tag": "Marine", "description": "One of the most noble and fast predators of the sea. Known for its sharp teeth and agility." },
-    "cipura": { "name": "Gilt-head Bream", "tag": "Aegean/Med", "description": "Recognized by its silvery scales and the golden spot on its cheeks, it is a very delicious marine fish." },
-    "gun-baligi": { "name": "Ornate Wrasse", "tag": "Colorful", "description": "A species that decorates coral reefs and rocky areas with its colorful body structure." },
-    "kum-mercani": { "name": "Sand Steenbras", "tag": "Deep Water", "description": "An elegant fish in pink-red tones that loves warm waters and sandy bottoms." },
-    "levrek": { "name": "European Bass", "tag": "King", "description": "Known as the king of the sea. It is a predatory species that likes to live in shallow waters near the coast." },
-    "yazili-hani": { "name": "Painted Comber", "tag": "Characteristic", "description": "A bottom fish distinguished by its writing-like patterns on its body and characteristic colors." },
-    "istavrit": { "name": "Horse Mackerel", "tag": "School", "description": "A very active marine fish with silvery colors that travels in schools." },
-    "kupes": { "name": "Bogue", "tag": "Fine Scaled", "description": "Known for its fine scales and large eyes, it is a very common species seen on our coasts." }
+    "kupes": {
+      "name": "Bogue",
+      "tag": "Coast Dweller",
+      "description": "A coastal schooling fish with high economic value, recognized by its large eyes and slender silvery body."
+    }
   },
   "settings": {
     "title": "Settings",
@@ -291,6 +248,19 @@
   },
   "ar": {
     "zoom": "ZOOM",
-    "rotate": "ROTATE"
+    "rotate": "ROTATE",
+    "info_title": "Did You Know? 🤔",
+    "habitat_label": "🏠 Habitat",
+    "species_label": "🔬 Scientific Name",
+    "fun_fact_label": "⭐ Fun Fact",
+    "fun_fact_lufer": "🌊 They are extremely voracious; they can consume their own weight in fish in a single day!",
+    "fun_fact_cipura": "🎨 Gilt-head breams are hermaphrodites; they start life as male and can turn into female as they age!",
+    "fun_fact_kefal": "🧠 They are smart enough to spot hooks and nets; they can jump out of the water when in danger!",
+    "fun_fact_gun_baligi": "✨ Their colors shine under sunlight, gliding underwater like a rainbow!",
+    "fun_fact_kum_mercani": "👃 It takes sand into its mouth, filters out food particles, and spits the sand back out!",
+    "fun_fact_levrek": "💪 Seabass hunt by ambushing their prey; they have an extremely wide field of vision!",
+    "fun_fact_yazili_hani": "🏆 Extremely territorial; it bravely defends its home rock against other fish!",
+    "fun_fact_sarikuyruk_istavrit": "🪩 They swim in massive schools to confuse predators, acting almost like a single giant organism!",
+    "fun_fact_kupes": "👁️ Thanks to its very large eyes, it can easily see plankton in the water even in the dark of night!"
   }
 }

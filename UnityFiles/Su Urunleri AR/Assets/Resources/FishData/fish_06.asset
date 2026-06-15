@@ -20,6 +20,6 @@ MonoBehaviour:
     G\xFCm\xFC\u015Fi parlak v\xFCcudu ile denizlerin \u015F\xF6valyesidir! Hem a\xE7\u0131k
     denizde hem k\u0131y\u0131larda ya\u015Far."
   arPrefab: {fileID: 7454020828178494082, guid: af0d1fe989df74c18a9d73e045b299a6, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.55, g: 0.4, b: 0.9, a: 1}

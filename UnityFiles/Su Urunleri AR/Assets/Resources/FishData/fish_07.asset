@@ -20,6 +20,6 @@ MonoBehaviour:
     ad\u0131n\u0131 alm\u0131\u015Ft\u0131r. Kayal\u0131k b\xF6lgelerde saklanmay\u0131
     sever. K\xFC\xE7\xFCk ama \xE7ok cesur bir bal\u0131kt\u0131r!"
   arPrefab: {fileID: 2784407906104307594, guid: b9633307625f2494080e79a55aca51b3, type: 3}
-  modelScale: 0.02
+  modelScale: 0.15
   thumbnail: {fileID: 0}
   themeColor: {r: 0.85, g: 0.25, b: 0.3, a: 1}

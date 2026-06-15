@@ -60,3 +60,10 @@ yarn-error.*
 /UnityFiles/Su Urunleri AR/ios/
 /UnityFiles/Su Urunleri AR/android/
 /UnityFiles/Su Urunleri AR/build.app/
+
+# Large files and custom build folders
+Demo_video.mp4
+/ios_build/
+/UnityFiles/Su Urunleri AR/.utmp/
+
+

@@ -172,22 +172,15 @@
     "50": { "title": "Müze Koleksiyonu", "text": "Müzemizde 120'den fazla tür bilimsel yöntemlerle korunarak gelecek nesillere aktarılmaktadır." }
   },
   "fish": {
-    "alabalik": { "name": "Alabalık", "tag": "Tatlı Su", "description": "Alabalıklar soğuk, berrak ve bol oksijenli akarsuları severler. Fırat havzasının yüksek kesimlerinde ve Keban barajı altındaki soğuk sularda yoğun olarak bulunurlar. Vücutları küçük pullarla kaplıdır ve üzerinde karakteristik benekler bulunur." },
-    "benekli_siraz": { "name": "Benekli Siraz", "tag": "Benekli", "description": "Bilimsel adı Capoeta trutta olan bu tür, vücudundaki küçük siyah beneklerle diğer siraz türlerinden ayrılır. Genellikle taşlık ve kayalık zeminli, hızlı akıntılı suları tercih ederler." },
-    "biyikli": { "name": "Bıyıklı Balık", "tag": "Duyarlı", "description": "Ağzının kenarlarındaki dört adet bıyık benzeri uzantı sayesinde suyun dibindeki yiyecekleri kolayca bulur. Akarsuların diplerinde, taşların arasında yaşayan böcek larvaları ve küçük kabuklularla beslenir." },
-    "bizir": { "name": "Bizir", "tag": "Fırat/Dicle", "description": "Fırat ve Dicle nehir sistemlerine özgü, bölge insanı tarafından çok sevilen bir türdür. Vücudu gümüşi pullarla kaplıdır ve oldukça narin bir yapıya sahiptir." },
-    "caner": { "name": "Caner Balığı", "tag": "Fırat Turnası", "description": "Mezopotamya'nın devi olarak bilinen Fırat Turnası (Luciobarbus esocinus), dünyanın en büyük tatlı su balıklarından biridir. Boyu 2 metreye, ağırlığı ise 150 kiloya kadar ulaşabilir." },
-    "elazig_sirazi": { "name": "Elazığ Sirazı", "tag": "Endemik", "description": "Bölgeye endemik bir tür olan Capoeta umbla, Elazığ'ın biyolojik zenginliğinin simgelerinden biridir. Özellikle Hazar Gölü ve nehir sistemlerinde yayılım gösterir." },
-    "gumus": { "name": "Gümüş Balığı", "tag": "Parlak", "description": "İnce, uzun ve yarı saydam bir vücuda sahip olan gümüş balıkları, su yüzeyine yakın kısımlarda büyük sürüler halinde yaşarlar." },
-    "kefal": { "name": "Kefal", "tag": "Zeki", "description": "Tatlı su kefali (Squalius cephalus), çok zeki ve dikkatli bir balıktır. En küçük bir tehlikeyi hissedip hızla uzaklaşabilir." },
-    "kizilkanat": { "name": "Kızılkanat", "tag": "Renkli", "description": "Adını kan kırmızı rengindeki yüzgeçlerinden alır. Parlak sarı-yeşil tonlarındaki pullarıyla su altında çok estetik bir görüntü sunar." },
-    "kupeli": { "name": "Küpeli Balık", "tag": "Uzun Vücut", "description": "Halk arasında 'Küpeli' olarak bilinen bu tür, uzun ve silindirik bir vücut yapısına sahiptir. Renkleri genellikle kahverengi ve yeşil tonlarındadır." },
-    "sabut": { "name": "Sabut", "tag": "Meşhur", "description": "Fırat havzasının en kaliteli ve lezzetli balıklarından biri olarak kabul edilir. Pullu ve oldukça güçlü bir vücut yapısı vardır." },
-    "sazan": { "name": "Sazan", "tag": "Dayanıklı", "description": "Pullu sazan, tatlı suların en dayanıklı ve en yaygın türüdür. Çok düşük oksijen seviyelerinde bile hayatta kalabilirler." },
-    "sazan_aynali": { "name": "Aynalı Sazan", "tag": "İri Pullu", "description": "Normal sazanın ıslah edilmiş bir formudur. Vücudunda çok az sayıda ama oldukça iri ve parlak pullar bulunur." },
-    "tas_isiran": { "name": "Taş Isıran", "tag": "Küçük Dev", "description": "Elazığ'a özgü nadir türlerden biridir (Cobitis elazigensis). Adını, kum ve taşları ağzına alıp üzerindeki besinleri süzdükten sonra taşı geri püskürtmesinden alır." },
-    "yayin": { "name": "Yayın Balığı", "tag": "Gece Avcısı", "description": "Avrupa ve Türkiye'nin en büyük tatlı su balığıdır. Pulsuz, kaygan derisi ve ağzının yanındaki devasa bıyıklarıyla kolayca tanınır." },
-    "yilan": { "name": "Yılan Balığı", "tag": "Mucizevi", "description": "Yaşam döngüsü tam bir doğa mucizesidir. Tatlı sularda yıllarca yaşadıktan sonra, üremek için binlerce kilometre yol kat ederek okyanuslara giderler." }
+    "lufer": { "name": "Lüfer", "tag": "Boğazın Efendisi", "description": "Fırat havzası ve denizlerimizin en asil yırtıcılarından biridir. Keskin dişleri ve güçlü yapısıyla bilinir." },
+    "cipura": { "name": "Çipura", "tag": "Ege Rüzgarı", "description": "Lezzetli eti ve oval vücut yapısıyla Akdeniz ve Ege'nin en popüler ekonomik türlerinden biridir." },
+    "kefal": { "name": "Kefal", "tag": "Çevik Yüzücü", "description": "Hem tatlı hem tuzlu sularda yaşayabilen, sürüler halinde gezen zeki bir dip balığıdır." },
+    "gun_baligi": { "name": "Gün Balığı", "tag": "Renkli Resif", "description": "Vücudundaki yeşil, mavi, kırmızı ve turuncu tonlarla resiflerin en göz alıcı, renkli balığıdır." },
+    "kum_mercani": { "name": "Kum Mercanı", "tag": "Dip Tarayıcı", "description": "Vücudundaki enine siyah çizgileriyle tanınır. Kumlu zeminlerde küçük kabukluları arayarak beslenir." },
+    "levrek": { "name": "Levrek", "tag": "Usta Avcı", "description": "Hızlı ve çevik yapısıyla nehir ağızlarında ve kıyılarda avlanan yırtıcı bir balıktır." },
+    "yazili_hani": { "name": "Yazılı Hani", "tag": "Taşlık Sakini", "description": "Kafasındaki mavi-mor renkteki karmaşık desenler el yazısını andırdığı için bu adı almıştır." },
+    "sarikuyruk_istavrit": { "name": "Sarıkuyruk İstavrit", "tag": "Altın Yüzgeç", "description": "Kuyruğundaki parlak sarı renk ve yan çizgisindeki kemiksi pullarla ayırt edilen bir istavrit türüdür." },
+    "kupes": { "name": "Kupes", "tag": "Kıyı Hakimi", "description": "İri gözleri ve ince uzun gövdesiyle bilinen, sürü oluşturan ekonomik değeri yüksek bir kıyı balığıdır." }
   },
   "settings": {
     "title": "Ayarlar",
@@ -247,6 +240,19 @@
   },
   "ar": {
     "zoom": "YAKINLAŞTIR",
-    "rotate": "DÖNDÜR"
+    "rotate": "DÖNDÜR",
+    "info_title": "Bunu Biliyor Muydun? 🤔",
+    "habitat_label": "🏠 Yaşadığı Yer",
+    "species_label": "🔬 Bilimsel Adı",
+    "fun_fact_label": "⭐ Eğlenceli Bilgi",
+    "fun_fact_lufer": "🌊 Çok obur bir balıktır; kendi ağırlığı kadar balığı tek seferde tüketebilir!",
+    "fun_fact_cipura": "🎨 Çipuralar çift cinsiyetlidir; hayata erkek başlar ve yaşlandıkça dişiye dönüşebilirler!",
+    "fun_fact_kefal": "🧠 Oltayı ve ağları fark edebilecek kadar zekidir; tehlike anında sudan dışarı zıplayabilir!",
+    "fun_fact_gun_baligi": "✨ Renkleri güneş ışığı altında parlar ve su altında adeta bir gökkuşağı gibi süzülür!",
+    "fun_fact_kum_mercani": "👃 Kumu ağzına alıp süzerek içindeki yiyecekleri bulur ve kumu geri püskürtür!",
+    "fun_fact_levrek": "💪 Levrekler avlarını pusuya düşürerek yakalar; çok geniş bir görüş alanına sahiptirler!",
+    "fun_fact_yazili_hani": "🏆 Bölgesine aşırı sadıktır; kendi kayasını diğer balıklara karşı cesurca korur!",
+    "fun_fact_sarikuyruk_istavrit": "🪩 Çok büyük sürüler halinde yüzerek düşmanlarını şaşırtırlar; adeta tek bir dev organizma gibi hareket ederler!",
+    "fun_fact_kupes": "👁️ Çok iri gözleri sayesinde gece karanlığında bile sudaki planktonları kolayca görebilir!"
   }
 }

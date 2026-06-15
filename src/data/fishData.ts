@@ -29,147 +29,84 @@ export const DID_YOU_KNOW_DATA = Array.from({ length: 50 }, (_, i) => ({
 
 export const ALL_FISH_DATA = [
   { 
-    id: 'alabalik', 
-    nameKey: 'fish.alabalik.name', 
-    image: require('../../assets/images/fish_image/alabalik.png'), 
-    tagKey: 'fish.alabalik.tag', 
-    category: 'Economic',
-    descriptionKey: 'fish.alabalik.description',
-    species: 'Salmo trutta'
-  },
-  { 
-    id: 'benekli_siraz', 
-    nameKey: 'fish.benekli_siraz.name', 
-    image: require('../../assets/images/fish_image/benekli_siraz.png'), 
-    tagKey: 'fish.benekli_siraz.tag', 
-    category: 'River',
-    descriptionKey: 'fish.benekli_siraz.description',
-    species: 'Capoeta trutta'
-  },
-  { 
-    id: 'biyikli', 
-    nameKey: 'fish.biyikli.name', 
-    image: require('../../assets/images/fish_image/biyikli.png'), 
-    tagKey: 'fish.biyikli.tag', 
-    category: 'River',
-    descriptionKey: 'fish.biyikli.description',
-    species: 'Barbus barbus'
-  },
-  { 
-    id: 'bizir', 
-    nameKey: 'fish.bizir.name', 
-    image: require('../../assets/images/fish_image/bizir.png'), 
-    tagKey: 'fish.bizir.tag', 
-    category: 'River',
-    descriptionKey: 'fish.bizir.description',
-    species: 'Barbus grypus'
-  },
-  { 
-    id: 'caner', 
-    nameKey: 'fish.caner.name', 
-    image: require('../../assets/images/fish_image/caner.png'), 
-    tagKey: 'fish.caner.tag', 
+    id: 'lufer', 
+    nameKey: 'fish.lufer.name', 
+    image: require('../../assets/images/fish_image/lufer.png'), 
+    tagKey: 'fish.lufer.tag', 
     category: 'Predator',
-    descriptionKey: 'fish.caner.description',
-    species: 'Luciobarbus esocinus'
+    descriptionKey: 'fish.lufer.description',
+    species: 'Pomatomus saltatrix'
   },
   { 
-    id: 'elazig_sirazi', 
-    nameKey: 'fish.elazig_sirazi.name', 
-    image: require('../../assets/images/fish_image/elazig_sirazi.png'), 
-    tagKey: 'fish.elazig_sirazi.tag', 
-    category: 'Endemic',
-    descriptionKey: 'fish.elazig_sirazi.description',
-    species: 'Capoeta umbla'
-  },
-  { 
-    id: 'gumus', 
-    nameKey: 'fish.gumus.name', 
-    image: require('../../assets/images/fish_image/gumus.png'), 
-    tagKey: 'fish.gumus.tag', 
-    category: 'River',
-    descriptionKey: 'fish.gumus.description',
-    species: 'Atherina boyeri'
+    id: 'cipura', 
+    nameKey: 'fish.cipura.name', 
+    image: require('../../assets/images/fish_image/cipura.png'), 
+    tagKey: 'fish.cipura.tag', 
+    category: 'Economic',
+    descriptionKey: 'fish.cipura.description',
+    species: 'Sparus aurata'
   },
   { 
     id: 'kefal', 
     nameKey: 'fish.kefal.name', 
     image: require('../../assets/images/fish_image/kefal.png'), 
     tagKey: 'fish.kefal.tag', 
-    category: 'Economic',
+    category: 'River',
     descriptionKey: 'fish.kefal.description',
-    species: 'Squalius cephalus'
+    species: 'Mugil cephalus'
   },
   { 
-    id: 'kizilkanat', 
-    nameKey: 'fish.kizilkanat.name', 
-    image: require('../../assets/images/fish_image/kizilkanat.png'), 
-    tagKey: 'fish.kizilkanat.tag', 
-    category: 'River',
-    descriptionKey: 'fish.kizilkanat.description',
-    species: 'Scardinius erythrophthalmus'
-  },
-  { 
-    id: 'kupeli', 
-    nameKey: 'fish.kupeli.name', 
-    image: require('../../assets/images/fish_image/kupeli.png'), 
-    tagKey: 'fish.kupeli.tag', 
-    category: 'River',
-    descriptionKey: 'fish.kupeli.description',
-    species: 'Barbus xanthopterus'
-  },
-  { 
-    id: 'sabut', 
-    nameKey: 'fish.sabut.name', 
-    image: require('../../assets/images/fish_image/sabut.png'), 
-    tagKey: 'fish.sabut.tag', 
-    category: 'Economic',
-    descriptionKey: 'fish.sabut.description',
-    species: 'Arabibarbus grypus'
-  },
-  { 
-    id: 'sazan', 
-    nameKey: 'fish.sazan.name', 
-    image: require('../../assets/images/fish_image/sazan.png'), 
-    tagKey: 'fish.sazan.tag', 
-    category: 'Economic',
-    descriptionKey: 'fish.sazan.description',
-    species: 'Cyprinus carpio'
-  },
-  { 
-    id: 'sazan_aynali', 
-    nameKey: 'fish.sazan_aynali.name', 
-    image: require('../../assets/images/fish_image/sazan_aynali.png'), 
-    tagKey: 'fish.sazan_aynali.tag', 
-    category: 'Economic',
-    descriptionKey: 'fish.sazan_aynali.description',
-    species: 'Cyprinus carpio (Aynalı)'
-  },
-  { 
-    id: 'tas_isiran', 
-    nameKey: 'fish.tas_isiran.name', 
-    image: require('../../assets/images/fish_image/tas_isiran.png'), 
-    tagKey: 'fish.tas_isiran.tag', 
-    category: 'Endemic',
-    descriptionKey: 'fish.tas_isiran.description',
-    species: 'Cobitis elazigensis'
-  },
-  { 
-    id: 'yayin', 
-    nameKey: 'fish.yayin.name', 
-    image: require('../../assets/images/fish_image/yayin.png'), 
-    tagKey: 'fish.yayin.tag', 
-    category: 'Predator',
-    descriptionKey: 'fish.yayin.description',
-    species: 'Silurus glanis'
-  },
-  { 
-    id: 'yilan', 
-    nameKey: 'fish.yilan.name', 
-    image: require('../../assets/images/fish_image/yilan.png'), 
-    tagKey: 'fish.yilan.tag', 
+    id: 'gun_baligi', 
+    nameKey: 'fish.gun_baligi.name', 
+    image: require('../../assets/images/fish_image/gun_baligi.png'), 
+    tagKey: 'fish.gun_baligi.tag', 
     category: 'Protected',
-    descriptionKey: 'fish.yilan.description',
-    species: 'Anguilla anguilla'
+    descriptionKey: 'fish.gun_baligi.description',
+    species: 'Thalassoma pavo'
+  },
+  { 
+    id: 'kum_mercani', 
+    nameKey: 'fish.kum_mercani.name', 
+    image: require('../../assets/images/fish_image/kum_mercani.png'), 
+    tagKey: 'fish.kum_mercani.tag', 
+    category: 'Economic',
+    descriptionKey: 'fish.kum_mercani.description',
+    species: 'Lithognathus mormyrus'
+  },
+  { 
+    id: 'levrek', 
+    nameKey: 'fish.levrek.name', 
+    image: require('../../assets/images/fish_image/levrek.png'), 
+    tagKey: 'fish.levrek.tag', 
+    category: 'Predator',
+    descriptionKey: 'fish.levrek.description',
+    species: 'Dicentrarchus labrax'
+  },
+  { 
+    id: 'yazili_hani', 
+    nameKey: 'fish.yazili_hani.name', 
+    image: require('../../assets/images/fish_image/yazili_hani.png'), 
+    tagKey: 'fish.yazili_hani.tag', 
+    category: 'Protected',
+    descriptionKey: 'fish.yazili_hani.description',
+    species: 'Serranus scriba'
+  },
+  { 
+    id: 'sarikuyruk_istavrit', 
+    nameKey: 'fish.sarikuyruk_istavrit.name', 
+    image: require('../../assets/images/fish_image/sarikuyruk_istavrit.png'), 
+    tagKey: 'fish.sarikuyruk_istavrit.tag', 
+    category: 'Economic',
+    descriptionKey: 'fish.sarikuyruk_istavrit.description',
+    species: 'Trachurus trachurus'
+  },
+  { 
+    id: 'kupes', 
+    nameKey: 'fish.kupes.name', 
+    image: require('../../assets/images/fish_image/kupes.png'), 
+    tagKey: 'fish.kupes.tag', 
+    category: 'Economic',
+    descriptionKey: 'fish.kupes.description',
+    species: 'Boops boops'
   }
 ];
